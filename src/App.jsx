@@ -2,11 +2,10 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
 import Services from './components/sections/Services';
-import About from './components/sections/About';
-import Portfolio from './components/sections/Portfolio';
-import Testimonials from './components/sections/Testimonials';
+import Projects from './components/sections/Projects';
 import Pricing from './components/sections/Pricing';
 import Contact from './components/sections/Contact';
+import About from './components/sections/About';
 
 function App() {
   return (
@@ -15,11 +14,10 @@ function App() {
       <main>
         <Hero />
         <Services />
-        <About />
-        <Portfolio />
-        <Testimonials />
+        <Projects />
         <Pricing />
         <Contact />
+        <About />
       </main>
       <Footer />
     </div>

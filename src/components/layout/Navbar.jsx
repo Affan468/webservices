@@ -5,11 +5,10 @@ import Button from '../ui/Button';
 
 const navLinks = [
   { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '#about' },
 ];
 
 const Navbar = () => {

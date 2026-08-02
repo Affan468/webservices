@@ -10,11 +10,11 @@ const footerLinks = {
     { label: 'E-Commerce', href: '#services' },
   ],
   Company: [
-    { label: 'About Us', href: '#about' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Services', href: '#services' },
+    { label: 'Projects', href: '#projects' },
     { label: 'Pricing', href: '#pricing' },
-    { label: 'Blog', href: '#' },
+    { label: 'Contact', href: '#contact' },
+    { label: 'About Us', href: '#about' },
   ],
   Support: [
     { label: 'Contact Us', href: '#contact' },
