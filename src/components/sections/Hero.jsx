@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
-import { ArrowRight, Play, Star, Code2, TrendingUp, Megaphone } from 'lucide-react';
+import { ArrowRight, Play, Star, Code2, TrendingUp, Megaphone, Settings, Target, Cpu, Terminal, Sparkles, BarChart2 } from 'lucide-react';
 import useMousePosition from '../../hooks/useMousePosition';
 import Button from '../ui/Button';
-import heroImg from '../../assets/hero_services.png';
 
-/* ── Floating Orb ── */
+/* ── Floating Orb Background ── */
 const FloatingOrb = ({ color, size, style, depth = 1 }) => {
   const { normalizedPosition } = useMousePosition();
   const x = useSpring(0, { stiffness: 80, damping: 20 });
@@ -39,7 +38,7 @@ const FloatingOrb = ({ color, size, style, depth = 1 }) => {
 };
 
 /* ── Cycling headline words ── */
-const words = ['Websites', 'SEO', 'Marketing', 'Growth'];
+const words = ['Websites', 'SEO', 'Marketing', 'Growth', 'Results'];
 
 const AnimatedWord = ({ word, isActive }) => (
   <motion.span
@@ -76,6 +75,11 @@ const Hero = () => {
     }
   }, [normalizedPosition, tiltX, tiltY]);
 
+  const staggerContainer = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  };
+
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
@@ -84,7 +88,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden bg-white"
+      className="relative pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden bg-white"
     >
       {/* Subtle dot grid */}
       <div
@@ -114,148 +118,159 @@ const Hero = () => {
         style={{ bottom: '-10%', right: '-4%' }}
       />
 
-      {/* 2-Column Split Hero Layout */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Left Column — Text & CTAs */}
+      {/* ── LEFT SIDE FLANK (Background Translucent Cards & Revolving Settings/Code Icon) ── */}
+      <div className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-8 pointer-events-none z-10 opacity-90">
+        {/* Revolving Settings/Gear Icon representing Web Dev Infrastructure */}
         <motion.div
-          className="lg:col-span-7 text-center lg:text-left space-y-6"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.1 } },
-          }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          className="w-16 h-16 rounded-2xl bg-purple-100/60 backdrop-blur-md border border-purple-200/50 flex items-center justify-center text-purple-600 shadow-lg shadow-purple-100/50"
         >
-          {/* Badge */}
-          <motion.div variants={fadeUp}>
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-100 to-rose-100 border border-purple-200/80 text-purple-900 text-xs sm:text-sm font-semibold shadow-sm">
-              <Star size={13} className="text-amber-500 fill-amber-500" />
-              Web Dev • SEO • Digital Marketing
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 leading-[1.08] tracking-tight"
-          >
-            We Build
-            <br />
-            <span className="relative inline-block" style={{ minWidth: '280px', height: '1.1em', verticalAlign: 'bottom' }}>
-              {words.map((w, i) => (
-                <AnimatedWord key={w} word={w} isActive={i === activeWord} />
-              ))}
-            </span>
-            <br />
-            That Scale Your Business
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            variants={fadeUp}
-            className="text-lg md:text-xl text-gray-500 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-          >
-            High-performance web development, data-driven SEO optimization, and ROI-focused digital marketing campaigns engineered for growth.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-            <Button href="#contact" variant="primary" size="md" className="group">
-              Start Your Project
-              <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button href="#services" variant="outline" size="md" className="group">
-              <Play size={16} className="mr-2 fill-current" />
-              Explore Services
-            </Button>
-          </motion.div>
-
-          {/* Rating */}
-          <motion.div variants={fadeUp} className="pt-2">
-            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-2">
-              <div className="flex text-yellow-400 gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={15} className="fill-current" />
-                ))}
-              </div>
-              <p className="text-sm text-gray-500">
-                <strong className="text-gray-900">4.9/5</strong> rating from 120+ satisfied clients
-              </p>
-            </div>
-          </motion.div>
+          <Settings size={28} />
         </motion.div>
 
-        {/* Right Column — 3D Hero Illustration with Floating Animated Service Badges */}
+        {/* Translucent Web Development Card */}
         <motion.div
-          className="lg:col-span-5 relative flex justify-center items-center"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          style={{ rotateX: tiltX, rotateY: tiltY }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0, y: [0, -10, 0] }}
+          transition={{ y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8 } }}
+          className="p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-purple-200/70 shadow-xl shadow-purple-100/60 max-w-[210px]"
         >
-          {/* Central 3D Illustration Graphic */}
-          <motion.div
-            className="relative z-10 w-full max-w-md rounded-2xl overflow-hidden shadow-2xl shadow-purple-200/50 border border-purple-100 bg-white"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <img
-              src={heroImg}
-              alt="DevSynx Web Development, SEO & Digital Marketing Services"
-              className="w-full h-auto object-cover"
-              loading="eager"
-            />
-          </motion.div>
-
-          {/* Floating Animated Badge 1: Web Development */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
-            transition={{ y: { duration: 4, repeat: Infinity, ease: 'easeInOut' }, opacity: { delay: 0.5 } }}
-            className="absolute -top-4 -left-4 sm:left-0 z-20 flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/90 backdrop-blur-md border border-purple-200 shadow-lg shadow-purple-100"
-          >
-            <div className="p-1.5 rounded-lg bg-purple-100 text-purple-600">
-              <Code2 size={16} />
+          <div className="flex items-center gap-2.5 mb-1.5">
+            <div className="p-2 rounded-xl bg-purple-100 text-purple-600">
+              <Code2 size={18} />
             </div>
             <div>
               <p className="text-xs font-bold text-gray-900">Web Development</p>
-              <p className="text-[10px] text-gray-500 font-medium">React • Next.js • Fast</p>
+              <p className="text-[10px] text-purple-600 font-semibold">React • Next.js</p>
             </div>
-          </motion.div>
+          </div>
+          <div className="flex items-center gap-1.5 text-[10px] text-gray-500 bg-purple-50/80 px-2 py-1 rounded-lg border border-purple-100">
+            <Terminal size={10} className="text-purple-600" />
+            <span>Clean & Scalable Code</span>
+          </div>
+        </motion.div>
+      </div>
 
-          {/* Floating Animated Badge 2: SEO Optimization */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0, y: [0, 8, 0] }}
-            transition={{ y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' }, opacity: { delay: 0.7 } }}
-            className="absolute top-1/2 -right-4 sm:-right-6 z-20 flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/90 backdrop-blur-md border border-emerald-200 shadow-lg shadow-emerald-100"
-          >
-            <div className="p-1.5 rounded-lg bg-emerald-100 text-emerald-600">
-              <TrendingUp size={16} />
+      {/* ── RIGHT SIDE FLANK (Background Translucent Cards & Revolving Target/Radar Icon) ── */}
+      <div className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end gap-8 pointer-events-none z-10 opacity-90">
+        {/* Revolving Target/Radar Icon representing SEO & Digital Marketing */}
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+          className="w-16 h-16 rounded-2xl bg-rose-100/60 backdrop-blur-md border border-rose-200/50 flex items-center justify-center text-rose-600 shadow-lg shadow-rose-100/50"
+        >
+          <Target size={28} />
+        </motion.div>
+
+        {/* Translucent SEO Optimization Card */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0, y: [0, 10, 0] }}
+          transition={{ y: { duration: 5, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8 } }}
+          className="p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-emerald-200/70 shadow-xl shadow-emerald-100/60 max-w-[210px]"
+        >
+          <div className="flex items-center gap-2.5 mb-1.5">
+            <div className="p-2 rounded-xl bg-emerald-100 text-emerald-600">
+              <TrendingUp size={18} />
             </div>
             <div>
               <p className="text-xs font-bold text-gray-900">SEO Optimization</p>
-              <p className="text-[10px] text-emerald-600 font-bold">Rank #1 Google • +340%</p>
+              <p className="text-[10px] text-emerald-600 font-bold">Rank #1 • +340%</p>
             </div>
-          </motion.div>
+          </div>
+          <p className="text-[10px] text-gray-500 bg-emerald-50/80 px-2 py-1 rounded-lg border border-emerald-100 text-center font-medium">
+            Organic Search Dominance
+          </p>
+        </motion.div>
 
-          {/* Floating Animated Badge 3: Digital Marketing */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0, y: [0, -6, 0] }}
-            transition={{ y: { duration: 3.8, repeat: Infinity, ease: 'easeInOut' }, opacity: { delay: 0.9 } }}
-            className="absolute -bottom-4 left-6 sm:left-12 z-20 flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/90 backdrop-blur-md border border-rose-200 shadow-lg shadow-rose-100"
-          >
-            <div className="p-1.5 rounded-lg bg-rose-100 text-rose-600">
-              <Megaphone size={16} />
+        {/* Translucent Digital Marketing Card */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
+          transition={{ y: { duration: 4.2, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8, delay: 0.2 } }}
+          className="p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-rose-200/70 shadow-xl shadow-rose-100/60 max-w-[210px]"
+        >
+          <div className="flex items-center gap-2.5 mb-1.5">
+            <div className="p-2 rounded-xl bg-rose-100 text-rose-600">
+              <Megaphone size={18} />
             </div>
             <div>
               <p className="text-xs font-bold text-gray-900">Digital Marketing</p>
               <p className="text-[10px] text-rose-600 font-bold">4.8x ROAS • High ROI</p>
             </div>
-          </motion.div>
+          </div>
+          <div className="flex items-center gap-1 text-[10px] text-rose-700 bg-rose-50/80 px-2 py-1 rounded-lg border border-rose-100 font-medium">
+            <BarChart2 size={10} className="text-rose-600" />
+            <span>Targeted Google & Meta Ads</span>
+          </div>
         </motion.div>
       </div>
+
+      {/* ── CENTERED HERO CONTENT ── */}
+      <motion.div
+        className="relative z-20 max-w-4xl mx-auto px-6 text-center"
+        style={{ rotateX: tiltX, rotateY: tiltY }}
+        variants={staggerContainer}
+        initial="hidden"
+        animate="show"
+      >
+        {/* Badge */}
+        <motion.div variants={fadeUp} className="mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-100 via-fuchsia-100 to-rose-100 border border-purple-200/80 text-purple-900 text-xs sm:text-sm font-semibold shadow-sm">
+            <Sparkles size={13} className="text-purple-600" />
+            Web Dev • SEO • Digital Marketing
+          </span>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h1
+          variants={fadeUp}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-[1.08] tracking-tight mb-4"
+        >
+          We Build
+          <br />
+          <span className="relative inline-block" style={{ minWidth: '320px', height: '1.1em', verticalAlign: 'bottom' }}>
+            {words.map((w, i) => (
+              <AnimatedWord key={w} word={w} isActive={i === activeWord} />
+            ))}
+          </span>
+          <br />
+          That Scale Your Business
+        </motion.h1>
+
+        {/* Subheadline */}
+        <motion.p
+          variants={fadeUp}
+          className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-8"
+        >
+          High-performance web development, data-driven SEO optimization, and ROI-focused digital marketing campaigns engineered for growth.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <Button href="#contact" variant="primary" size="md" className="group">
+            Start Your Project
+            <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button href="#services" variant="outline" size="md" className="group">
+            <Play size={16} className="mr-2 fill-current" />
+            Explore Services
+          </Button>
+        </motion.div>
+
+        {/* Rating */}
+        <motion.div variants={fadeUp} className="flex items-center justify-center">
+          <div className="flex flex-col items-center text-center">
+            <div className="flex text-yellow-400 mb-1 gap-0.5">
+              {[...Array(5)].map((_, i) => <Star key={i} size={15} className="fill-current" />)}
+            </div>
+            <p className="text-sm text-gray-500">
+              <strong className="text-gray-900">4.9/5</strong> rating from 120+ satisfied clients
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
