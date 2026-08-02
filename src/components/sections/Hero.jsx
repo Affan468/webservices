@@ -51,8 +51,8 @@ const AnimatedWord = ({ word, isActive }) => (
     initial={{ opacity: 0, y: 30, rotateX: -30 }}
     animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : -30, rotateX: isActive ? 0 : 30 }}
     transition={{ duration: 0.45, ease: 'easeOut' }}
-    className="absolute inset-0 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-rose-500 bg-clip-text text-transparent"
-    style={{ display: 'inline-block' }}
+    className="absolute left-1/2 -translate-x-1/2 top-0 whitespace-nowrap bg-gradient-to-r from-purple-600 via-fuchsia-600 to-rose-500 bg-clip-text text-transparent px-3 py-1"
+    style={{ pointerEvents: isActive ? 'auto' : 'none' }}
   >
     {word}
   </motion.span>
@@ -238,7 +238,7 @@ const Hero = () => {
         >
           We Build
           <br />
-          <span className="relative inline-block" style={{ minWidth: '320px', height: '1.1em', verticalAlign: 'bottom' }}>
+          <span className="relative inline-block min-w-[280px] sm:min-w-[420px] md:min-w-[500px] lg:min-w-[560px] h-[1.2em] align-bottom">
             {words.map((w, i) => (
               <AnimatedWord key={w} word={w} isActive={i === activeWord} />
             ))}
