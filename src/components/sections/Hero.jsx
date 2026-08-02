@@ -11,18 +11,22 @@ const FloatingOrb = ({ color, size, style, depth = 1 }) => {
   const x = useSpring(0, { stiffness: 80, damping: 20 });
   const y = useSpring(0, { stiffness: 80, damping: 20 });
 
-  x.set(normalizedPosition.x * 40 * depth);
-  y.set(normalizedPosition.y * 40 * depth);
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
+      x.set(normalizedPosition.x * 40 * depth);
+      y.set(normalizedPosition.y * 40 * depth);
+    }
+  }, [normalizedPosition, depth, x, y]);
 
   return (
     <motion.div
-      className="absolute rounded-full pointer-events-none"
+      className="absolute rounded-full pointer-events-none hidden md:block"
       style={{
         width: size,
         height: size,
         background: color,
-        filter: 'blur(45px)',
-        opacity: 0.5,
+        filter: 'blur(35px)',
+        opacity: 0.45,
         willChange: 'transform',
         x,
         y,
@@ -95,8 +99,12 @@ const Hero = () => {
   const tiltX = useSpring(useMotionValue(0), { stiffness: 100, damping: 25 });
   const tiltY = useSpring(useMotionValue(0), { stiffness: 100, damping: 25 });
 
-  tiltX.set(normalizedPosition.y * -6);
-  tiltY.set(normalizedPosition.x * 6);
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
+      tiltX.set(normalizedPosition.y * -6);
+      tiltY.set(normalizedPosition.x * 6);
+    }
+  }, [normalizedPosition, tiltX, tiltY]);
 
   const staggerContainer = {
     hidden: {},

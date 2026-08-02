@@ -66,6 +66,9 @@ const WaterRippleCanvas = () => {
     };
 
     const handlePointerMove = (e) => {
+      // Skip touch events on mobile to preserve 60fps native scrolling performance
+      if (e.pointerType === 'touch' || window.innerWidth < 768) return;
+
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -121,8 +124,6 @@ const WaterRippleCanvas = () => {
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = r.lineWidth;
-        ctx.shadowColor = 'rgba(225, 29, 72, 0.4)';
-        ctx.shadowBlur = 8;
         ctx.stroke();
         ctx.restore();
       }
@@ -145,8 +146,6 @@ const WaterRippleCanvas = () => {
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(225, 29, 72, ${d.alpha})`;
-        ctx.shadowColor = 'rgba(168, 85, 247, 0.5)';
-        ctx.shadowBlur = 4;
         ctx.fill();
         ctx.restore();
       }
