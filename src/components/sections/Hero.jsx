@@ -124,14 +124,14 @@ const Hero = () => {
       />
 
       {/* ── LEFT SIDE FLANK: WEB DEVELOPMENT IMAGE & REVOLVING SETTINGS ICON ── */}
-      <div className="absolute left-2 xl:left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-6 pointer-events-none z-10 opacity-90">
+      <div className="absolute left-4 lg:left-10 xl:left-16 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-6 pointer-events-none z-10">
         {/* Revolving Settings Icon */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="w-14 h-14 rounded-2xl bg-purple-100/70 backdrop-blur-md border border-purple-200/60 flex items-center justify-center text-purple-600 shadow-md shadow-purple-100/50"
+          className="w-16 h-16 rounded-2xl bg-purple-100/40 backdrop-blur-md border border-purple-200/40 flex items-center justify-center text-purple-600/80 shadow-sm"
         >
-          <Settings size={26} />
+          <Settings size={28} />
         </motion.div>
 
         {/* Translucent Web Dev Picture Card */}
@@ -139,35 +139,35 @@ const Hero = () => {
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0, y: [0, -10, 0] }}
           transition={{ y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8 } }}
-          className="relative max-w-[230px] rounded-2xl overflow-hidden bg-white/75 backdrop-blur-md border border-purple-200/80 shadow-xl shadow-purple-100/60 p-2.5 space-y-2 group"
+          className="relative max-w-[270px] xl:max-w-[300px] rounded-2xl overflow-hidden bg-white/45 backdrop-blur-lg border border-purple-200/50 shadow-xl p-3 space-y-2.5 opacity-65 hover:opacity-95 transition-opacity duration-300 pointer-events-auto"
         >
-          <div className="relative rounded-xl overflow-hidden h-32 bg-purple-50">
+          <div className="relative rounded-xl overflow-hidden h-40 sm:h-44 bg-purple-50/40">
             <img
               src={webDevImg}
               alt="Web Development Service"
-              className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity"
+              className="w-full h-full object-cover opacity-70 hover:opacity-95 transition-opacity duration-300"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-purple-950/40 via-transparent to-transparent" />
-            <span className="absolute bottom-2 left-2 text-[11px] font-bold text-white bg-purple-600/80 px-2 py-0.5 rounded-md backdrop-blur-sm">
+            <span className="absolute bottom-2.5 left-2.5 text-xs font-bold text-white bg-purple-600/70 px-2.5 py-1 rounded-md backdrop-blur-sm shadow-sm">
               Web Development
             </span>
           </div>
-          <div className="flex items-center gap-2 text-[10px] text-gray-600 px-1 font-medium">
-            <Code2 size={12} className="text-purple-600" />
+          <div className="flex items-center gap-2 text-xs text-gray-600 px-1 font-semibold">
+            <Code2 size={14} className="text-purple-600" />
             <span>React • Next.js • High Speed</span>
           </div>
         </motion.div>
       </div>
 
       {/* ── RIGHT SIDE FLANK: SEO & DIGITAL MARKETING TRANSPARENT IMAGES ── */}
-      <div className="absolute right-2 xl:right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-end gap-6 pointer-events-none z-10 opacity-90">
+      <div className="absolute right-4 lg:right-10 xl:right-16 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-end gap-6 pointer-events-none z-10">
         {/* Revolving Target Radar Icon */}
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-          className="w-14 h-14 rounded-2xl bg-rose-100/70 backdrop-blur-md border border-rose-200/60 flex items-center justify-center text-rose-600 shadow-md shadow-rose-100/50"
+          className="w-16 h-16 rounded-2xl bg-rose-100/40 backdrop-blur-md border border-rose-200/40 flex items-center justify-center text-rose-600/80 shadow-sm"
         >
-          <Target size={26} />
+          <Target size={28} />
         </motion.div>
 
         {/* Translucent SEO Image Flank */}
@@ -175,20 +175,20 @@ const Hero = () => {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0, y: [0, 10, 0] }}
           transition={{ y: { duration: 5.2, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8 } }}
-          className="relative max-w-[210px] rounded-2xl bg-white/75 backdrop-blur-md border border-emerald-200/80 shadow-xl shadow-emerald-100/60 p-3 space-y-2"
+          className="relative max-w-[260px] xl:max-w-[285px] rounded-2xl bg-white/45 backdrop-blur-lg border border-emerald-200/50 shadow-xl p-3 space-y-2.5 opacity-65 hover:opacity-95 transition-opacity duration-300 pointer-events-auto"
         >
-          <div className="relative h-24 flex items-center justify-center bg-emerald-50/50 rounded-xl overflow-hidden p-1">
+          <div className="relative h-32 sm:h-36 flex items-center justify-center bg-emerald-50/30 rounded-xl overflow-hidden p-2">
             <img
               src={seoImg}
               alt="SEO Optimization Service"
-              className="max-h-full object-contain drop-shadow-md opacity-90"
+              className="max-h-full object-contain drop-shadow-md opacity-75 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="flex items-center justify-between text-[11px] px-1 font-bold">
-            <span className="text-gray-900 flex items-center gap-1">
-              <TrendingUp size={12} className="text-emerald-600" /> SEO Search
+          <div className="flex items-center justify-between text-xs px-1 font-bold">
+            <span className="text-gray-900 flex items-center gap-1.5">
+              <TrendingUp size={14} className="text-emerald-600" /> SEO Search
             </span>
-            <span className="text-emerald-600 font-extrabold bg-emerald-100/80 px-1.5 py-0.5 rounded">Rank #1</span>
+            <span className="text-emerald-700 font-extrabold bg-emerald-100/70 px-2 py-0.5 rounded">Rank #1</span>
           </div>
         </motion.div>
 
@@ -197,20 +197,20 @@ const Hero = () => {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
           transition={{ y: { duration: 4.4, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8, delay: 0.2 } }}
-          className="relative max-w-[210px] rounded-2xl bg-white/75 backdrop-blur-md border border-rose-200/80 shadow-xl shadow-rose-100/60 p-3 space-y-2"
+          className="relative max-w-[260px] xl:max-w-[285px] rounded-2xl bg-white/45 backdrop-blur-lg border border-rose-200/50 shadow-xl p-3 space-y-2.5 opacity-65 hover:opacity-95 transition-opacity duration-300 pointer-events-auto"
         >
-          <div className="relative h-24 flex items-center justify-center bg-rose-50/50 rounded-xl overflow-hidden p-1">
+          <div className="relative h-32 sm:h-36 flex items-center justify-center bg-rose-50/30 rounded-xl overflow-hidden p-2">
             <img
               src={digitalImg}
               alt="Digital Marketing Service"
-              className="max-h-full object-contain drop-shadow-md opacity-90"
+              className="max-h-full object-contain drop-shadow-md opacity-75 hover:opacity-100 transition-opacity"
             />
           </div>
-          <div className="flex items-center justify-between text-[11px] px-1 font-bold">
-            <span className="text-gray-900 flex items-center gap-1">
-              <Megaphone size={12} className="text-rose-600" /> Digital Marketing
+          <div className="flex items-center justify-between text-xs px-1 font-bold">
+            <span className="text-gray-900 flex items-center gap-1.5">
+              <Megaphone size={14} className="text-rose-600" /> Digital Marketing
             </span>
-            <span className="text-rose-600 font-extrabold bg-rose-100/80 px-1.5 py-0.5 rounded">4.8x ROAS</span>
+            <span className="text-rose-700 font-extrabold bg-rose-100/70 px-2 py-0.5 rounded">4.8x ROAS</span>
           </div>
         </motion.div>
       </div>
