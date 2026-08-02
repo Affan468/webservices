@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 
-const categories = ['All', 'Web Dev', 'SEO', 'Marketing', 'E-Commerce'];
+const categories = ['All', 'Web Dev', 'SEO', 'Marketing'];
 
 const projects = [
   {
@@ -17,9 +17,9 @@ const projects = [
     gradient: 'from-emerald-500 to-teal-600', icon: '🌿', metrics: '+1200% organic traffic',
   },
   {
-    id: 3, title: 'LuxeStore Launch', category: 'E-Commerce', tag: 'Shopify',
-    description: 'Premium fashion e-commerce with custom animations and AR try-on feature.',
-    gradient: 'from-pink-500 to-rose-600', icon: '👗', metrics: '$2M first-year revenue',
+    id: 3, title: 'LuxePlatform Launch', category: 'Web Dev', tag: 'Full-Stack Web',
+    description: 'Premium custom web platform with high-speed animations and interactive UI.',
+    gradient: 'from-pink-500 to-rose-600', icon: '💻', metrics: '100/100 Speed Score',
   },
   {
     id: 4, title: 'TechFlow PPC', category: 'Marketing', tag: 'Google Ads',

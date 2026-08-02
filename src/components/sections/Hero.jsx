@@ -3,7 +3,7 @@ import { motion, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowRight, Play, Star } from 'lucide-react';
 import useMousePosition from '../../hooks/useMousePosition';
 import Button from '../ui/Button';
-import WaterRippleCanvas from '../ui/WaterRippleCanvas';
+import HeroShowcase from '../ui/HeroShowcase';
 
 /* ── Floating Orb ── */
 const FloatingOrb = ({ color, size, style, depth = 1 }) => {
@@ -38,38 +38,8 @@ const FloatingOrb = ({ color, size, style, depth = 1 }) => {
   );
 };
 
-/* ── Floating Card ── */
-const FloatingCard = ({ icon, title, value, delay, style, depth = 0.6 }) => {
-  const { normalizedPosition } = useMousePosition();
-  const x = useSpring(0, { stiffness: 60, damping: 18 });
-  const y = useSpring(0, { stiffness: 60, damping: 18 });
-
-  x.set(normalizedPosition.x * 25 * depth);
-  y.set(normalizedPosition.y * 25 * depth);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ delay, duration: 0.7, ease: 'easeOut' }}
-      style={{ x, y, ...style }}
-      className="absolute hidden lg:flex items-center gap-3 px-4 py-3 rounded-2xl
-        bg-white/85 backdrop-blur-xl border border-purple-100
-        shadow-xl shadow-purple-100/60 pointer-events-none"
-    >
-      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-100 to-rose-100 border border-purple-200/50 flex items-center justify-center text-2xl">
-        {icon}
-      </div>
-      <div>
-        <p className="text-gray-900 font-bold text-lg leading-none">{value}</p>
-        <p className="text-gray-500 text-xs mt-0.5">{title}</p>
-      </div>
-    </motion.div>
-  );
-};
-
 /* ── Cycling headline words ── */
-const words = ['Websites', 'SEO', 'Growth', 'Brands', 'Results'];
+const words = ['Websites', 'SEO', 'Digital Marketing', 'Growth', 'Results'];
 
 const AnimatedWord = ({ word, isActive }) => (
   <motion.span
@@ -119,11 +89,8 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative pt-28 pb-16 md:pt-32 md:pb-20 flex items-center justify-center overflow-hidden bg-white"
+      className="relative pt-24 pb-16 md:pt-32 md:pb-24 flex items-center justify-center overflow-hidden bg-white"
     >
-      {/* Water Ripple Interactive Canvas */}
-      <WaterRippleCanvas />
-
       {/* Subtle dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -138,7 +105,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-purple-100/70 via-rose-50/40 to-white pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
 
-      {/* Purplish and Reddish Cursor-reactive orbs */}
+      {/* Purplish and Reddish background orbs */}
       <FloatingOrb
         color="radial-gradient(circle, #e9d5ff 0%, #c084fc 60%, transparent 80%)"
         size="520px"
@@ -158,14 +125,9 @@ const Hero = () => {
         style={{ top: '25%', right: '18%' }}
       />
 
-      {/* Floating stat cards */}
-      <FloatingCard icon="🚀" title="Projects Delivered" value="200+" delay={1.0} depth={0.7} style={{ top: '18%', right: '6%' }} />
-      <FloatingCard icon="⭐" title="Client Satisfaction" value="98%" delay={1.2} depth={0.5} style={{ bottom: '20%', left: '4%' }} />
-      <FloatingCard icon="📈" title="Avg. Traffic Growth" value="3x" delay={1.4} depth={0.9} style={{ top: '58%', right: '4%' }} />
-
       {/* Main content */}
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto px-6 text-center"
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         style={{ rotateX: tiltX, rotateY: tiltY }}
         variants={staggerContainer}
         initial="hidden"
@@ -175,7 +137,7 @@ const Hero = () => {
         <motion.div variants={fadeUp} className="mb-4">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-100 to-rose-100 border border-purple-200/80 text-purple-900 text-xs sm:text-sm font-semibold shadow-sm">
             <Star size={13} className="text-amber-500 fill-amber-500" />
-            Trusted by 150+ Growing Businesses
+            Web Dev • SEO • Digital Marketing
           </span>
         </motion.div>
 
@@ -186,51 +148,52 @@ const Hero = () => {
         >
           We Build
           <br />
-          <span className="relative inline-block" style={{ minWidth: '320px', height: '1.1em', verticalAlign: 'bottom' }}>
+          <span className="relative inline-block" style={{ minWidth: '340px', height: '1.1em', verticalAlign: 'bottom' }}>
             {words.map((w, i) => (
               <AnimatedWord key={w} word={w} isActive={i === activeWord} />
             ))}
           </span>
           <br />
-          That Matter
+          That Scale Your Business
         </motion.h1>
 
         {/* Subheadline */}
         <motion.p
           variants={fadeUp}
-          className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-8"
+          className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-6"
         >
-          From stunning websites to data-driven SEO and digital marketing campaigns — we help brands dominate their market online.
+          High-performance web development, data-driven SEO optimization, and ROI-focused digital marketing campaigns engineered for growth.
         </motion.p>
 
         {/* CTAs */}
-        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
           <Button href="#contact" variant="primary" size="md" className="group">
             Start Your Project
             <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button href="#portfolio" variant="outline" size="md" className="group">
+          <Button href="#services" variant="outline" size="md" className="group">
             <Play size={16} className="mr-2 fill-current" />
-            See Our Work
+            Explore Services
           </Button>
         </motion.div>
 
-        {/* Social proof */}
-        <motion.div
-          variants={fadeUp}
-          className="mt-10 flex items-center justify-center"
-        >
+        {/* Rating */}
+        <motion.div variants={fadeUp} className="mb-4">
           <div className="flex flex-col items-center text-center">
             <div className="flex text-yellow-400 mb-1 gap-0.5">
               {[...Array(5)].map((_, i) => <Star key={i} size={15} className="fill-current" />)}
             </div>
             <p className="text-sm text-gray-500">
-              <strong className="text-gray-900">4.9/5</strong> from 120+ verified reviews
+              <strong className="text-gray-900">4.9/5</strong> rating from 120+ satisfied clients
             </p>
           </div>
         </motion.div>
-      </motion.div>
 
+        {/* Service Showcase Live Animation */}
+        <motion.div variants={fadeUp}>
+          <HeroShowcase />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
