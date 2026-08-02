@@ -9,7 +9,7 @@ import About from './components/sections/About';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-violet-500/30 selection:text-violet-200">
       <Navbar />
       <main>
         <Hero />

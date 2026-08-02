@@ -43,8 +43,8 @@ const Projects = () => {
   const filtered = projects.filter((p) => activeFilter === 'All' || p.category === activeFilter);
 
   return (
-    <section id="projects" className="py-32 bg-gray-50 relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-cyan-400/40 to-transparent" />
+    <section id="projects" className="py-32 bg-slate-950 relative">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-cyan-500/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
@@ -64,8 +64,8 @@ const Projects = () => {
               whileTap={{ scale: 0.95 }}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeFilter === cat
-                  ? 'bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-lg shadow-violet-200'
-                  : 'bg-white border border-gray-200 text-gray-500 hover:text-gray-800 hover:border-gray-300 hover:shadow-sm'
+                  ? 'bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-500 text-white shadow-lg shadow-violet-500/30'
+                  : 'bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 hover:shadow-sm'
               }`}
             >
               {cat}
@@ -85,31 +85,31 @@ const Projects = () => {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 whileHover={{ y: -6 }}
-                className="group relative rounded-2xl overflow-hidden bg-white border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="group relative rounded-2xl overflow-hidden bg-slate-900/80 border border-slate-800 hover:border-slate-700 hover:shadow-2xl transition-all duration-300 cursor-pointer backdrop-blur-sm"
               >
                 {/* Visual */}
                 <div className={`relative h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
                   <span className="text-6xl">{project.icon}</span>
-                  <div className="absolute inset-0 bg-black/10" />
+                  <div className="absolute inset-0 bg-black/20" />
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-black/40 flex items-center justify-center"
+                    className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-[2px]"
                   >
-                    <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
                       <ExternalLink size={20} className="text-white" />
                     </div>
                   </motion.div>
-                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/25 backdrop-blur-sm text-white text-xs font-medium">
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md text-white text-xs font-medium border border-white/20">
                     {project.tag}
                   </div>
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-gray-900 font-bold text-lg mb-2">{project.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{project.description}</p>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 border border-green-200 text-green-700 text-xs font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-4">{project.description}</p>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     {project.metrics}
                   </div>
                 </div>

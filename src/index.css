@@ -21,8 +21,8 @@
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #ffffff;
-    color: #0f172a;
+    background-color: #020617;
+    color: #f8fafc;
     overflow-x: hidden;
     touch-action: manipulation;
   }
@@ -31,18 +31,18 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #090d16;
   }
   ::-webkit-scrollbar-thumb {
-    background: #a78bfa;
+    background: #475569;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #7c3aed;
+    background: #8b5cf6;
   }
 
   ::selection {
-    background: rgba(124, 58, 237, 0.15);
-    color: #4c1d95;
+    background: rgba(139, 92, 246, 0.3);
+    color: #e9d5ff;
   }
 }

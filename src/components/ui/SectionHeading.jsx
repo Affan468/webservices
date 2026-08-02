@@ -22,18 +22,18 @@ const SectionHeading = ({ badge, title, highlight, subtitle, centered = true }) 
       {badge && (
         <motion.span
           variants={item}
-          className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-violet-100 border border-violet-200 text-violet-600"
+          className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 backdrop-blur-md"
         >
           {badge}
         </motion.span>
       )}
       <motion.h2
         variants={item}
-        className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4"
+        className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4"
       >
         {title}{' '}
         {highlight && (
-          <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
             {highlight}
           </span>
         )}
@@ -41,7 +41,7 @@ const SectionHeading = ({ badge, title, highlight, subtitle, centered = true }) 
       {subtitle && (
         <motion.p
           variants={item}
-          className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed"
         >
           {subtitle}
         </motion.p>

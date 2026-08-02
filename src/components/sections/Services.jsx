@@ -9,12 +9,12 @@ const services = [
     description:
       'Lightning-fast, fully responsive websites and web applications built with modern frameworks like React and Next.js. Engineered for speed, accessibility, and conversion.',
     features: ['React / Next.js Frameworks', 'Performance & Speed Optimized', 'Mobile-First Responsive Design', 'Custom CMS & API Integrations'],
-    gradient: 'from-purple-600 to-indigo-600',
-    iconBg: 'from-purple-100 to-indigo-100',
-    iconText: 'text-purple-600',
-    dotColor: 'bg-purple-600',
-    border: 'hover:border-purple-300',
-    shadow: 'hover:shadow-purple-100',
+    gradient: 'from-purple-500 to-indigo-500',
+    iconBg: 'from-purple-500/20 to-indigo-500/20',
+    iconText: 'text-purple-400',
+    dotColor: 'bg-purple-400',
+    border: 'hover:border-purple-500/50',
+    shadow: 'hover:shadow-purple-950/50',
   },
   {
     icon: TrendingUp,
@@ -22,12 +22,12 @@ const services = [
     description:
       'Dominate search engine rankings with our data-driven SEO strategies. We conduct deep technical audits, targeted keyword research, and high-quality link building.',
     features: ['Technical SEO Audits & Fixes', 'Targeted Keyword Strategy', 'Authority Link Building', 'GA4 Analytics & Rank Tracking'],
-    gradient: 'from-emerald-500 to-teal-600',
-    iconBg: 'from-emerald-100 to-teal-100',
-    iconText: 'text-emerald-600',
-    dotColor: 'bg-emerald-500',
-    border: 'hover:border-emerald-300',
-    shadow: 'hover:shadow-emerald-100',
+    gradient: 'from-emerald-400 to-teal-400',
+    iconBg: 'from-emerald-500/20 to-teal-500/20',
+    iconText: 'text-emerald-400',
+    dotColor: 'bg-emerald-400',
+    border: 'hover:border-emerald-500/50',
+    shadow: 'hover:shadow-emerald-950/50',
   },
   {
     icon: Megaphone,
@@ -35,12 +35,12 @@ const services = [
     description:
       'High-ROI campaigns across Google Search, Meta (Instagram & Facebook), and beyond. We combine audience targeting with high-converting creative.',
     features: ['Google Search & Display Ads', 'Meta Paid Social Campaigns', 'Conversion Rate Optimization', 'Retargeting & ROI Analytics'],
-    gradient: 'from-rose-500 to-pink-600',
-    iconBg: 'from-rose-100 to-pink-100',
-    iconText: 'text-rose-600',
-    dotColor: 'bg-rose-500',
-    border: 'hover:border-rose-300',
-    shadow: 'hover:shadow-rose-100',
+    gradient: 'from-rose-400 to-pink-500',
+    iconBg: 'from-rose-500/20 to-pink-500/20',
+    iconText: 'text-rose-400',
+    dotColor: 'bg-rose-400',
+    border: 'hover:border-rose-500/50',
+    shadow: 'hover:shadow-rose-950/50',
   },
 ];
 
@@ -55,9 +55,9 @@ const cardVariants = {
 
 const Services = () => {
   return (
-    <section id="services" className="py-32 bg-gray-50 relative">
+    <section id="services" className="py-32 bg-slate-900/60 relative">
       {/* Top divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-violet-300/60 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-violet-500/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
@@ -77,26 +77,26 @@ const Services = () => {
               whileInView="show"
               viewport={{ once: true, margin: '-60px' }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className={`group relative p-8 rounded-2xl bg-white border border-gray-200
+              className={`group relative p-8 rounded-2xl bg-slate-950/80 border border-slate-800
                 ${service.border} ${service.shadow}
-                hover:shadow-xl
+                hover:shadow-2xl backdrop-blur-sm
                 transition-all duration-300 cursor-pointer`}
             >
               {/* Gradient top accent */}
               <div className={`absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full`} />
 
               {/* Icon */}
-              <div className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br ${service.iconBg} items-center justify-center mb-6`}>
+              <div className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br ${service.iconBg} border border-slate-700/50 items-center justify-center mb-6`}>
                 <service.icon size={26} className={service.iconText} />
               </div>
 
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6">{service.description}</p>
+              <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">{service.description}</p>
 
               {/* Features */}
               <ul className="space-y-2 mb-6">
                 {service.features.map((feat) => (
-                  <li key={feat} className="flex items-center gap-2 text-gray-600 text-sm">
+                  <li key={feat} className="flex items-center gap-2 text-slate-300 text-sm">
                     <span className={`w-1.5 h-1.5 rounded-full ${service.dotColor}`} />
                     {feat}
                   </li>
