@@ -81,7 +81,12 @@ const Navbar = ({ onOpenAdmin }) => {
             <img src={logoImg} alt="DEVIAURA Logo" className="w-8 h-8 md:w-9 md:h-9 object-contain" />
             <span className="font-black text-lg md:text-xl tracking-tight">
               <span className="text-white">DEVI</span>
-              <span className="text-sky-300">AURA</span>
+              <span
+                className="bg-gradient-to-t from-[#1d4ed8] via-[#38bdf8] to-[#87CEEB] bg-clip-text text-transparent"
+                style={{ WebkitTextStroke: '0.4px rgba(255, 255, 255, 0.45)' }}
+              >
+                ΛURΛ
+              </span>
             </span>
           </motion.a>
 

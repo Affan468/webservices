@@ -144,7 +144,7 @@ const AdminPanel = ({ onBack }) => {
             <Lock size={28} />
           </div>
 
-          <h2 className="text-2xl font-bold text-white text-center mb-2">DeviAura Admin Panel</h2>
+          <h2 className="text-2xl font-bold text-white text-center mb-2">DEVI<span className="bg-gradient-to-t from-[#1d4ed8] via-[#38bdf8] to-[#87CEEB] bg-clip-text text-transparent" style={{ WebkitTextStroke: '0.4px rgba(255, 255, 255, 0.45)' }}>ΛURΛ</span> Admin Panel</h2>
           <p className="text-slate-400 text-sm text-center mb-8">
             Enter passcode to manage your projects & portfolio.
           </p>

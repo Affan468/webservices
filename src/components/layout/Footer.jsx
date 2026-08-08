@@ -35,7 +35,12 @@ const Footer = ({ onOpenAdmin }) => {
               <img src={logoImg} alt="DEVIAURA Logo" className="w-8 h-8 md:w-9 md:h-9 object-contain" />
               <span className="font-extrabold text-xl tracking-tight">
                 <span className="text-white">DEVI</span>
-                <span className="text-sky-400">AURA</span>
+                <span
+                  className="bg-gradient-to-t from-[#1d4ed8] via-[#38bdf8] to-[#87CEEB] bg-clip-text text-transparent"
+                  style={{ WebkitTextStroke: '0.4px rgba(255, 255, 255, 0.45)' }}
+                >
+                  ΛURΛ
+                </span>
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
