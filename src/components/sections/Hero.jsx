@@ -38,7 +38,7 @@ const FloatingOrb = ({ color, size, style, depth = 1 }) => {
 };
 
 /* ── Cycling headline words ── */
-const words = ['Websites', 'SEO', 'Marketing', 'Growth', 'Results'];
+const words = ['Web Development', 'Mobile App Development', 'SEO', 'Digital Marketing'];
 
 const AnimatedWord = ({ word, isActive }) => (
   <motion.span
@@ -46,7 +46,7 @@ const AnimatedWord = ({ word, isActive }) => (
     initial={{ opacity: 0, y: 30, rotateX: -30 }}
     animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : -30, rotateX: isActive ? 0 : 30 }}
     transition={{ duration: 0.45, ease: 'easeOut' }}
-    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent px-2 drop-shadow-sm"
+    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent px-2 drop-shadow-sm text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold"
     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
   >
     {word}
@@ -205,15 +205,15 @@ const Hero = () => {
           variants={fadeUp}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-4"
         >
-          We Build
+          We Do
           <br />
-          <span className="relative inline-block min-w-[260px] sm:min-w-[360px] md:min-w-[420px] lg:min-w-[460px] h-[1.1em] align-bottom">
+          <span className="relative inline-block min-w-[280px] sm:min-w-[440px] md:min-w-[580px] lg:min-w-[680px] h-[1.1em] align-bottom my-1">
             {words.map((w, i) => (
               <AnimatedWord key={w} word={w} isActive={i === activeWord} />
             ))}
           </span>
           <br />
-          That Scale Your Business
+          To Scale Your Business
         </motion.h1>
 
         {/* Subheadline */}
