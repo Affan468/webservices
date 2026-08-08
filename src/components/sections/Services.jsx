@@ -31,7 +31,7 @@ const services = [
   },
   {
     icon: TrendingUp,
-    title: 'SEO Optimization',
+    title: 'SEO',
     description:
       'Dominate search engine rankings with our data-driven SEO strategies. We conduct deep technical audits, targeted keyword research, and high-quality link building.',
     features: ['Technical SEO Audits & Fixes', 'Targeted Keyword Strategy', 'Authority Link Building', 'GA4 Analytics & Rank Tracking'],

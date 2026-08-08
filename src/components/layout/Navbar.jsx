@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShieldCheck } from 'lucide-react';
 import Button from '../ui/Button';
 import logoImg from '../../assets/image.png';
 
@@ -12,18 +12,48 @@ const navLinks = [
   { label: 'About', href: '#about' },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onOpenAdmin }) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      if (window.scrollY < 150) {
+        setActiveSection('');
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -40% 0px',
+      threshold: 0,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && window.scrollY >= 150) {
+          setActiveSection(`#${entry.target.id}`);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const elements = navLinks.map((link) => document.querySelector(link.href)).filter(Boolean);
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const handleNav = (href) => {
     setMenuOpen(false);
+    setActiveSection(href);
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
@@ -57,26 +87,47 @@ const Navbar = () => {
 
           {/* Desktop Links */}
           <ul className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link, i) => (
-              <motion.li
-                key={link.label}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * i + 0.3 }}
-              >
-                <button
-                  onClick={() => handleNav(link.href)}
-                  className="text-sky-100 hover:text-white text-sm font-semibold tracking-wide transition-colors duration-200 relative group py-1"
+            {navLinks.map((link, i) => {
+              const isActive = activeSection === link.href;
+              return (
+                <motion.li
+                  key={link.label}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * i + 0.3 }}
                 >
-                  {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300" />
-                </button>
-              </motion.li>
-            ))}
+                  <button
+                    onClick={() => handleNav(link.href)}
+                    className={`text-sm font-semibold tracking-wide transition-colors duration-200 relative py-1.5 px-1 group ${
+                      isActive ? 'text-sky-300 font-bold' : 'text-sky-100 hover:text-white'
+                    }`}
+                  >
+                    {link.label}
+                    {isActive ? (
+                      <motion.span
+                        layoutId="activeNavIndicator"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 rounded-full shadow-[0_0_10px_#38bdf8]"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    ) : (
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300 rounded-full" />
+                    )}
+                  </button>
+                </motion.li>
+              );
+            })}
           </ul>
 
-          {/* CTA */}
-          <div className="hidden md:block">
+          {/* CTA & Admin Button */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={onOpenAdmin}
+              className="px-3.5 py-2 rounded-xl bg-[#061c24]/90 border border-[#064699]/40 text-slate-200 hover:text-white hover:border-sky-400 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm"
+              title="Open Admin Panel"
+            >
+              <ShieldCheck size={15} className="text-sky-400" /> Admin
+            </button>
+
             <Button onClick={() => handleNav('#contact')} variant="primary" size="sm">
               Get Started
             </Button>
@@ -115,6 +166,17 @@ const Navbar = () => {
                 {link.label}
               </motion.button>
             ))}
+
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                onOpenAdmin();
+              }}
+              className="px-5 py-2.5 rounded-xl bg-[#064699]/30 border border-[#064699]/50 text-sky-300 font-semibold text-base flex items-center gap-2"
+            >
+              <ShieldCheck size={18} /> Admin Panel
+            </button>
+
             <Button onClick={() => handleNav('#contact')} variant="primary" size="md">
               Get Started
             </Button>

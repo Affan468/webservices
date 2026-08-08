@@ -6,7 +6,7 @@ const footerLinks = {
   Services: [
     { label: 'Web Development', href: '#services' },
     { label: 'Mobile App Development', href: '#services' },
-    { label: 'SEO Optimization', href: '#services' },
+    { label: 'SEO', href: '#services' },
     { label: 'Digital Marketing', href: '#services' },
   ],
   Company: [
@@ -24,7 +24,7 @@ const footerLinks = {
   ],
 };
 
-const Footer = () => {
+const Footer = ({ onOpenAdmin }) => {
   return (
     <footer className="bg-[#04141b] border-t border-[#064699]/30 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
@@ -77,6 +77,12 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-[#064699]/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">© {new Date().getFullYear()} DeviAura. All rights reserved.</p>
+          <button
+            onClick={onOpenAdmin}
+            className="text-slate-500 hover:text-sky-300 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+          >
+            Admin Panel Login
+          </button>
         </div>
       </div>
     </footer>

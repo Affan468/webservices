@@ -46,7 +46,7 @@ const AnimatedWord = ({ word, isActive }) => (
     initial={{ opacity: 0, y: 30, rotateX: -30 }}
     animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : -30, rotateX: isActive ? 0 : 30 }}
     transition={{ duration: 0.45, ease: 'easeOut' }}
-    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent px-2 drop-shadow-sm text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold"
+    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent px-6 overflow-visible text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-normal"
     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
   >
     {word}
@@ -203,11 +203,11 @@ const Hero = () => {
         {/* Headline */}
         <motion.h1
           variants={fadeUp}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-4"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-4"
         >
           We Do
           <br />
-          <span className="relative inline-block min-w-[280px] sm:min-w-[440px] md:min-w-[580px] lg:min-w-[680px] h-[1.1em] align-bottom my-1">
+          <span className="relative inline-block w-full max-w-full sm:w-auto min-w-[280px] sm:min-w-[480px] md:min-w-[640px] lg:min-w-[750px] h-[1.2em] align-bottom my-1 overflow-visible">
             {words.map((w, i) => (
               <AnimatedWord key={w} word={w} isActive={i === activeWord} />
             ))}

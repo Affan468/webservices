@@ -122,20 +122,22 @@ const Contact = () => {
                         <option value="" disabled className="bg-[#061c24] text-slate-400">Select a service</option>
                         <option className="bg-[#061c24] text-white">Web Development</option>
                         <option className="bg-[#061c24] text-white">Mobile App Development</option>
-                        <option className="bg-[#061c24] text-white">SEO Optimization</option>
+                        <option className="bg-[#061c24] text-white">SEO</option>
                         <option className="bg-[#061c24] text-white">Digital Marketing</option>
                         <option className="bg-[#061c24] text-white">Full Package</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-slate-400 text-xs font-semibold mb-2 uppercase tracking-wide">Budget Range</label>
-                      <select id="contact-budget" name="budget" value={formData.budget} onChange={handleChange} className={`${inputClass} appearance-none bg-[#061c24]`}>
-                        <option value="" disabled className="bg-[#061c24] text-slate-400">Select budget</option>
-                        <option className="bg-[#061c24] text-white">Under $1,000</option>
-                        <option className="bg-[#061c24] text-white">$1,000 – $5,000</option>
-                        <option className="bg-[#061c24] text-white">$5,000 – $15,000</option>
-                        <option className="bg-[#061c24] text-white">$15,000+</option>
-                      </select>
+                      <label className="block text-slate-400 text-xs font-semibold mb-2 uppercase tracking-wide">Your Budget</label>
+                      <input
+                        id="contact-budget"
+                        name="budget"
+                        type="text"
+                        placeholder="e.g. $1,500 or $5k - $10k"
+                        value={formData.budget}
+                        onChange={handleChange}
+                        className={inputClass}
+                      />
                     </div>
                   </div>
 

@@ -3,42 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Sparkles, ChevronDown } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
-
-// Cover Images
-import azhfuImg from '../../assets/azhfuimpex.png';
-import comsatsImg from '../../assets/comsats.png';
+import { useProjects } from '../../context/ProjectContext';
 
 const categories = ['All', 'Web Dev', 'Mobile Apps', 'SEO', 'Marketing'];
 
-// Custom projects list
-const projects = [
-  {
-    id: 1,
-    title: 'Azfhu Impex',
-    category: 'Web Dev',
-    tag: 'Full-Stack Online Store',
-    description:
-      'Built a custom online store for customizable equipment wholesale dealing — buyers can configure product specs before ordering, with tiered wholesale pricing and a streamlined quote-to-order flow. Includes dealer accounts and a scalable catalog structure, all wrapped in a clean, simple UI despite the underlying complexity.',
-    metrics: 'BJJ Gi, MMA & Boxing Gear Manufacturer',
-    gradient: 'from-[#064699] via-blue-600 to-[#081e26]',
-    image: azhfuImg,
-    link: 'https://azfhuimpex.com',
-  },
-  {
-    id: 2,
-    title: 'Comscad',
-    category: 'Web Dev',
-    tag: 'Full-Stack Student Portal',
-    description:
-      'A React.js web app for sharing academic resources — students upload, preview, and download past papers, assignments, and notes by course, with an admin approval workflow ensuring quality. Files are compressed on upload and stored on Cloudflare, with Supabase handling the database.',
-    metrics: 'React.js • Supabase • Cloudflare',
-    gradient: 'from-sky-500 via-[#064699] to-cyan-500',
-    image: comsatsImg,
-    link: 'https://student-resources-tau.vercel.app/',
-  },
-];
-
 const Projects = () => {
+  const { projects } = useProjects();
   const [activeFilter, setActiveFilter] = useState('All');
   const [showAll, setShowAll] = useState(false);
 
@@ -98,9 +68,9 @@ const Projects = () => {
                     className="group relative rounded-2xl overflow-hidden bg-[#061c24]/90 border border-[#064699]/30 hover:border-[#064699] hover:shadow-2xl transition-all duration-300 cursor-pointer backdrop-blur-sm"
                   >
                     {/* Visual */}
-                    <div className={`relative h-48 bg-gradient-to-br ${project.gradient || 'from-[#064699] to-[#081e26]'} flex items-center justify-center`}>
+                    <div className={`relative h-48 bg-gradient-to-br ${project.gradient || 'from-[#064699] to-[#081e26]'} flex items-center justify-center p-4 overflow-hidden`}>
                       {project.image ? (
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                        <img src={project.image} alt={project.title} className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" />
                       ) : (
                         <span className="text-6xl">{project.icon || '🚀'}</span>
                       )}
@@ -126,13 +96,7 @@ const Projects = () => {
 
                     <div className="p-6">
                       <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed mb-4">{project.description}</p>
-                      {project.metrics && (
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#064699]/20 border border-[#064699]/40 text-sky-300 text-xs font-semibold">
-                          <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                          {project.metrics}
-                        </div>
-                      )}
+                      <p className="text-slate-400 text-sm leading-relaxed">{project.description}</p>
                     </div>
                   </motion.div>
                 ))}

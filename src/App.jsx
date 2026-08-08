@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -7,6 +8,8 @@ import Projects from './components/sections/Projects';
 import Pricing from './components/sections/Pricing';
 import Contact from './components/sections/Contact';
 import About from './components/sections/About';
+import AdminPanel from './components/admin/AdminPanel';
+import { ProjectProvider } from './context/ProjectContext';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -35,29 +38,39 @@ const AnimatedSection = ({ children }) => (
 );
 
 function App() {
+  const [showAdmin, setShowAdmin] = useState(false);
+
   return (
-    <div className="min-h-screen bg-[#081e26] text-slate-100 font-sans selection:bg-[#064699]/40 selection:text-sky-200">
-      <Navbar />
-      <main>
-        <Hero />
-        <AnimatedSection>
-          <Services />
-        </AnimatedSection>
-        <AnimatedSection>
-          <Projects />
-        </AnimatedSection>
-        <AnimatedSection>
-          <Pricing />
-        </AnimatedSection>
-        <AnimatedSection>
-          <Contact />
-        </AnimatedSection>
-        <AnimatedSection>
-          <About />
-        </AnimatedSection>
-      </main>
-      <Footer />
-    </div>
+    <ProjectProvider>
+      <div className="min-h-screen bg-[#081e26] text-slate-100 font-sans selection:bg-[#064699]/40 selection:text-sky-200">
+        {showAdmin ? (
+          <AdminPanel onBack={() => setShowAdmin(false)} />
+        ) : (
+          <>
+            <Navbar onOpenAdmin={() => setShowAdmin(true)} />
+            <main>
+              <Hero />
+              <AnimatedSection>
+                <Services />
+              </AnimatedSection>
+              <AnimatedSection>
+                <Projects />
+              </AnimatedSection>
+              <AnimatedSection>
+                <Pricing />
+              </AnimatedSection>
+              <AnimatedSection>
+                <Contact />
+              </AnimatedSection>
+              <AnimatedSection>
+                <About />
+              </AnimatedSection>
+            </main>
+            <Footer onOpenAdmin={() => setShowAdmin(true)} />
+          </>
+        )}
+      </div>
+    </ProjectProvider>
   );
 }
 
