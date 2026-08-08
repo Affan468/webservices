@@ -11,8 +11,8 @@ const plans = [
     features: ['5-page responsive website', 'Basic SEO setup', 'Google Analytics integration', '1 month support', 'Contact form', 'Mobile optimized'],
     notIncluded: ['Custom animations', 'PPC management', 'Monthly reporting'],
     popular: false,
-    cardBg: 'bg-slate-950/80',
-    border: 'border-slate-800',
+    cardBg: 'bg-[#061c24]/90',
+    border: 'border-[#064699]/30',
   },
   {
     name: 'Growth', monthly: 1299, yearly: 999,
@@ -20,8 +20,8 @@ const plans = [
     features: ['Up to 15 pages + CMS', 'Full SEO optimization', 'Google & Meta Ads management', '3 months priority support', 'Monthly performance reports', 'Custom animations', 'A/B testing setup', 'Email marketing (1k contacts)'],
     notIncluded: ['Dedicated account manager'],
     popular: true,
-    cardBg: 'bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950',
-    border: 'border-violet-500/80',
+    cardBg: 'bg-gradient-to-b from-[#082938] via-[#061c24] to-[#04141b]',
+    border: 'border-[#064699]',
   },
   {
     name: 'Enterprise', monthly: 2999, yearly: 2499,
@@ -29,8 +29,8 @@ const plans = [
     features: ['Unlimited pages + custom features', 'Advanced SEO + link building', 'Full PPC management (all platforms)', '12 months dedicated support', 'Weekly strategy calls', 'Custom integrations & APIs', 'E-commerce setup', 'Dedicated account manager', 'Priority SLA'],
     notIncluded: [],
     popular: false,
-    cardBg: 'bg-slate-950/80',
-    border: 'border-slate-800',
+    cardBg: 'bg-[#061c24]/90',
+    border: 'border-[#064699]/30',
   },
 ];
 
@@ -38,8 +38,8 @@ const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
 
   return (
-    <section id="pricing" className="py-32 bg-slate-900/60 relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-violet-500/40 to-transparent" />
+    <section id="pricing" className="py-32 bg-[#081e26] relative">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-[#064699]/60 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
@@ -54,7 +54,7 @@ const Pricing = () => {
           <span className={`text-sm font-medium ${!isYearly ? 'text-white' : 'text-slate-400'}`}>Monthly</span>
           <button
             onClick={() => setIsYearly(!isYearly)}
-            className="relative w-14 h-7 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 shadow-inner"
+            className="relative w-14 h-7 rounded-full bg-gradient-to-r from-[#064699] to-[#085ac9] shadow-inner"
           >
             <motion.div
               animate={{ x: isYearly ? 28 : 4 }}
@@ -64,7 +64,7 @@ const Pricing = () => {
           </button>
           <span className={`text-sm font-medium ${isYearly ? 'text-white' : 'text-slate-400'}`}>
             Yearly{' '}
-            <span className="ml-1 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs">
+            <span className="ml-1 px-2 py-0.5 rounded-full bg-[#064699]/20 border border-[#064699]/40 text-sky-300 text-xs font-semibold">
               Save ~25%
             </span>
           </span>
@@ -81,12 +81,12 @@ const Pricing = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: plan.popular ? 0 : -6 }}
               className={`relative p-8 rounded-2xl flex flex-col border-2 ${plan.cardBg} ${plan.border}
-                ${plan.popular ? 'shadow-2xl shadow-violet-950/60 scale-105' : 'hover:shadow-xl hover:border-slate-700'}
+                ${plan.popular ? 'shadow-2xl shadow-[#064699]/40 scale-105' : 'hover:shadow-xl hover:border-[#064699]/60'}
                 transition-all duration-300 backdrop-blur-sm`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-500 text-white text-xs font-bold shadow-lg shadow-violet-500/30">
+                  <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#064699] to-[#085ac9] text-white text-xs font-bold shadow-lg shadow-[#064699]/40">
                     <Zap size={11} className="fill-current" /> Most Popular
                   </div>
                 </div>
@@ -110,7 +110,7 @@ const Pricing = () => {
                   <span className="text-slate-400 mb-2">/mo</span>
                 </div>
                 {isYearly && (
-                  <p className="text-emerald-400 text-xs mt-1">
+                  <p className="text-sky-300 text-xs mt-1">
                     Billed annually — saving ${(plan.monthly - plan.yearly) * 12}/yr
                   </p>
                 )}
@@ -119,7 +119,7 @@ const Pricing = () => {
               <ul className="space-y-3 mb-8 flex-1">
                 {plan.features.map((feat) => (
                   <li key={feat} className="flex items-start gap-3 text-sm text-slate-300">
-                    <Check size={16} className="text-emerald-400 shrink-0 mt-0.5" />
+                    <Check size={16} className="text-sky-400 shrink-0 mt-0.5" />
                     {feat}
                   </li>
                 ))}
@@ -145,7 +145,7 @@ const Pricing = () => {
 
         <p className="text-center text-slate-400 text-sm mt-10">
           Need something custom?{' '}
-          <a href="#contact" className="text-violet-400 hover:text-violet-300 underline underline-offset-2">
+          <a href="#contact" className="text-sky-300 hover:text-white underline underline-offset-2 font-medium">
             Let's talk
           </a>
           . All plans include a free 30-minute strategy consultation.

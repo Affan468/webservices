@@ -16,13 +16,13 @@ const SectionHeading = ({ badge, title, highlight, subtitle, centered = true }) 
       className={`mb-16 ${centered ? 'text-center' : ''}`}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: false, margin: '-60px' }}
       variants={container}
     >
       {badge && (
         <motion.span
           variants={item}
-          className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 backdrop-blur-md"
+          className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-[#064699]/20 border border-[#064699]/40 text-sky-300 backdrop-blur-md"
         >
           {badge}
         </motion.span>
@@ -33,7 +33,7 @@ const SectionHeading = ({ badge, title, highlight, subtitle, centered = true }) 
       >
         {title}{' '}
         {highlight && (
-          <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
             {highlight}
           </span>
         )}

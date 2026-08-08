@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Code2, TrendingUp, Megaphone, Palette, ShoppingCart, BarChart3, ArrowRight } from 'lucide-react';
+import { Code2, TrendingUp, Megaphone, Smartphone, ArrowRight } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 
 const services = [
@@ -9,12 +9,25 @@ const services = [
     description:
       'Lightning-fast, fully responsive websites and web applications built with modern frameworks like React and Next.js. Engineered for speed, accessibility, and conversion.',
     features: ['React / Next.js Frameworks', 'Performance & Speed Optimized', 'Mobile-First Responsive Design', 'Custom CMS & API Integrations'],
-    gradient: 'from-purple-500 to-indigo-500',
-    iconBg: 'from-purple-500/20 to-indigo-500/20',
-    iconText: 'text-purple-400',
-    dotColor: 'bg-purple-400',
-    border: 'hover:border-purple-500/50',
-    shadow: 'hover:shadow-purple-950/50',
+    gradient: 'from-[#064699] via-sky-400 to-[#081e26]',
+    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
+    iconText: 'text-sky-300',
+    dotColor: 'bg-sky-400',
+    border: 'hover:border-[#064699]',
+    shadow: 'hover:shadow-[#064699]/30',
+  },
+  {
+    icon: Smartphone,
+    title: 'Mobile App Development',
+    description:
+      'Native & cross-platform iOS and Android mobile applications built with React Native and Flutter. Designed for high performance, intuitive UX, and seamless app store deployment.',
+    features: ['iOS & Android (React Native / Flutter)', 'Smooth 60fps UI & Animations', 'Offline-First & Cloud API Sync', 'App Store & Google Play Deployment'],
+    gradient: 'from-sky-300 via-[#064699] to-cyan-500',
+    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
+    iconText: 'text-sky-300',
+    dotColor: 'bg-sky-400',
+    border: 'hover:border-sky-400',
+    shadow: 'hover:shadow-sky-950/50',
   },
   {
     icon: TrendingUp,
@@ -22,12 +35,12 @@ const services = [
     description:
       'Dominate search engine rankings with our data-driven SEO strategies. We conduct deep technical audits, targeted keyword research, and high-quality link building.',
     features: ['Technical SEO Audits & Fixes', 'Targeted Keyword Strategy', 'Authority Link Building', 'GA4 Analytics & Rank Tracking'],
-    gradient: 'from-emerald-400 to-teal-400',
-    iconBg: 'from-emerald-500/20 to-teal-500/20',
-    iconText: 'text-emerald-400',
-    dotColor: 'bg-emerald-400',
-    border: 'hover:border-emerald-500/50',
-    shadow: 'hover:shadow-emerald-950/50',
+    gradient: 'from-cyan-400 via-[#064699] to-[#081e26]',
+    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
+    iconText: 'text-cyan-300',
+    dotColor: 'bg-cyan-400',
+    border: 'hover:border-cyan-500/60',
+    shadow: 'hover:shadow-cyan-950/50',
   },
   {
     icon: Megaphone,
@@ -35,12 +48,12 @@ const services = [
     description:
       'High-ROI campaigns across Google Search, Meta (Instagram & Facebook), and beyond. We combine audience targeting with high-converting creative.',
     features: ['Google Search & Display Ads', 'Meta Paid Social Campaigns', 'Conversion Rate Optimization', 'Retargeting & ROI Analytics'],
-    gradient: 'from-rose-400 to-pink-500',
-    iconBg: 'from-rose-500/20 to-pink-500/20',
-    iconText: 'text-rose-400',
-    dotColor: 'bg-rose-400',
-    border: 'hover:border-rose-500/50',
-    shadow: 'hover:shadow-rose-950/50',
+    gradient: 'from-blue-400 via-[#064699] to-[#081e26]',
+    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
+    iconText: 'text-blue-300',
+    dotColor: 'bg-blue-400',
+    border: 'hover:border-blue-500/60',
+    shadow: 'hover:shadow-blue-950/50',
   },
 ];
 
@@ -55,9 +68,9 @@ const cardVariants = {
 
 const Services = () => {
   return (
-    <section id="services" className="py-32 bg-slate-900/60 relative">
+    <section id="services" className="py-32 bg-[#081e26] relative">
       {/* Top divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-violet-500/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-[#064699]/60 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
@@ -67,7 +80,7 @@ const Services = () => {
           subtitle="We combine cutting-edge technology with proven strategies to help your business grow faster and smarter online."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -77,16 +90,16 @@ const Services = () => {
               whileInView="show"
               viewport={{ once: true, margin: '-60px' }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className={`group relative p-8 rounded-2xl bg-slate-950/80 border border-slate-800
+              className={`group relative p-8 rounded-2xl bg-[#061c24]/90 border border-[#064699]/30
                 ${service.border} ${service.shadow}
-                hover:shadow-2xl backdrop-blur-sm
+                hover:shadow-2xl backdrop-blur-sm transform-gpu
                 transition-all duration-300 cursor-pointer`}
             >
               {/* Gradient top accent */}
               <div className={`absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full`} />
 
               {/* Icon */}
-              <div className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br ${service.iconBg} border border-slate-700/50 items-center justify-center mb-6`}>
+              <div className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br ${service.iconBg} border border-[#064699]/40 items-center justify-center mb-6`}>
                 <service.icon size={26} className={service.iconText} />
               </div>
 
@@ -103,7 +116,7 @@ const Services = () => {
                 ))}
               </ul>
 
-              <div className={`flex items-center gap-1 text-sm font-semibold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent group-hover:gap-2 transition-all`}>
+              <div className={`flex items-center gap-1 text-sm font-semibold text-sky-300 group-hover:gap-2 transition-all`}>
                 Learn More <ArrowRight size={14} className={service.iconText + ' group-hover:translate-x-1 transition-transform'} />
               </div>
             </motion.div>

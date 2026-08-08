@@ -21,7 +21,7 @@
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #020617;
+    background-color: #081e26;
     color: #f8fafc;
     overflow-x: hidden;
     touch-action: manipulation;
@@ -31,18 +31,18 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #090d16;
+    background: #041217;
   }
   ::-webkit-scrollbar-thumb {
-    background: #475569;
+    background: #064699;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #8b5cf6;
+    background: #0b6bcb;
   }
 
   ::selection {
-    background: rgba(139, 92, 246, 0.3);
-    color: #e9d5ff;
+    background: rgba(6, 70, 153, 0.4);
+    color: #e0f2fe;
   }
 }

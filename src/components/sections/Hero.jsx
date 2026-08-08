@@ -12,32 +12,27 @@ import digitalImg from '../../assets/digital-removebg-preview.png';
 /* ── Floating Orb Background ── */
 const FloatingOrb = ({ color, size, style, depth = 1 }) => {
   const { normalizedPosition } = useMousePosition();
-  const x = useSpring(0, { stiffness: 80, damping: 20 });
-  const y = useSpring(0, { stiffness: 80, damping: 20 });
+  const x = useSpring(0, { stiffness: 60, damping: 25 });
+  const y = useSpring(0, { stiffness: 60, damping: 25 });
 
   useEffect(() => {
     if (window.innerWidth >= 768) {
-      x.set(normalizedPosition.x * 30 * depth);
-      y.set(normalizedPosition.y * 30 * depth);
+      x.set(normalizedPosition.x * 20 * depth);
+      y.set(normalizedPosition.y * 20 * depth);
     }
   }, [normalizedPosition, depth, x, y]);
 
   return (
     <motion.div
-      className="absolute rounded-full pointer-events-none hidden md:block"
+      className="absolute rounded-full pointer-events-none hidden md:block transform-gpu will-change-transform opacity-40"
       style={{
         width: size,
         height: size,
         background: color,
-        filter: 'blur(40px)',
-        opacity: 0.4,
-        willChange: 'transform',
         x,
         y,
         ...style,
       }}
-      animate={{ scale: [1, 1.06, 1] }}
-      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
     />
   );
 };
@@ -51,7 +46,7 @@ const AnimatedWord = ({ word, isActive }) => (
     initial={{ opacity: 0, y: 30, rotateX: -30 }}
     animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : -30, rotateX: isActive ? 0 : 30 }}
     transition={{ duration: 0.45, ease: 'easeOut' }}
-    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent px-2 drop-shadow-sm"
+    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent px-2 drop-shadow-sm"
     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
   >
     {word}
@@ -93,32 +88,32 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden bg-slate-950"
+      className="relative pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden bg-[#081e26]"
     >
       {/* Subtle dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, #475569 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, #064699 1px, transparent 1px)',
           backgroundSize: '32px 32px',
-          opacity: 0.35,
+          opacity: 0.25,
         }}
       />
 
-      {/* Purplish & Dark Gradient wash */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-slate-950 to-slate-950 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none" />
+      {/* Deep Light-Blue to Midnight Gradient wash */}
+      <div className="absolute inset-0 bg-gradient-to-b from-sky-950/60 via-[#064699]/20 to-[#081e26] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#081e26] to-transparent pointer-events-none" />
 
       {/* Background Orbs */}
       <FloatingOrb
-        color="radial-gradient(circle, #a855f7 0%, #7e22ce 60%, transparent 80%)"
-        size="520px"
+        color="radial-gradient(circle, #38bdf8 0%, #064699 60%, transparent 80%)"
+        size="540px"
         depth={0.8}
         style={{ top: '-10%', left: '-5%' }}
       />
       <FloatingOrb
-        color="radial-gradient(circle, #f43f5e 0%, #be123c 55%, transparent 80%)"
-        size="480px"
+        color="radial-gradient(circle, #0ea5e9 0%, #081e26 70%, transparent 80%)"
+        size="500px"
         depth={1.2}
         style={{ bottom: '-10%', right: '-4%' }}
       />
@@ -129,7 +124,7 @@ const Hero = () => {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="w-14 h-14 rounded-2xl bg-purple-500/10 backdrop-blur-sm border border-purple-400/20 flex items-center justify-center text-purple-400/80 shadow-sm"
+          className="w-14 h-14 rounded-2xl bg-[#064699]/20 backdrop-blur-sm border border-[#064699]/40 flex items-center justify-center text-sky-400 shadow-sm"
         >
           <Settings size={26} />
         </motion.div>
@@ -139,7 +134,7 @@ const Hero = () => {
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 0.85, x: 0, y: [0, -12, 0] }}
           transition={{ y: { duration: 5, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8 } }}
-          className="relative max-w-[250px] xl:max-w-[280px] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(168,85,247,0.3)] border border-purple-500/20 hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
+          className="relative max-w-[250px] xl:max-w-[280px] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(6,70,153,0.3)] border border-[#064699]/30 hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
         >
           <img
             src={webDevImg}
@@ -155,7 +150,7 @@ const Hero = () => {
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-          className="w-14 h-14 rounded-2xl bg-rose-500/10 backdrop-blur-sm border border-rose-400/20 flex items-center justify-center text-rose-400/80 shadow-sm"
+          className="w-14 h-14 rounded-2xl bg-[#064699]/20 backdrop-blur-sm border border-[#064699]/40 flex items-center justify-center text-sky-400 shadow-sm"
         >
           <Target size={26} />
         </motion.div>
@@ -199,9 +194,9 @@ const Hero = () => {
       >
         {/* Badge */}
         <motion.div variants={fadeUp} className="mb-4">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs sm:text-sm font-semibold shadow-sm backdrop-blur-md">
-            <Sparkles size={13} className="text-violet-400" />
-            Web Dev • SEO • Digital Marketing
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#064699]/20 border border-[#064699]/40 text-sky-300 text-xs sm:text-sm font-semibold shadow-sm backdrop-blur-md">
+            <Sparkles size={13} className="text-sky-400" />
+            Fueling Digital Success
           </span>
         </motion.div>
 
