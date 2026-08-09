@@ -2,6 +2,28 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import logoImg from '../../assets/image.png';
 
+const InstagramIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const FacebookIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
+
+const LinkedinIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
 const footerLinks = {
   Services: [
     { label: 'Web Development', href: '#services' },
@@ -32,7 +54,9 @@ const Footer = ({ onOpenAdmin }) => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <img src={logoImg} alt="DEVIAURA Logo" className="w-8 h-8 md:w-9 md:h-9 object-contain" />
+              <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white p-1 overflow-hidden flex items-center justify-center shrink-0 shadow-md">
+                <img src={logoImg} alt="DEVIAURA Logo" className="w-full h-full object-contain" />
+              </div>
               <span className="font-extrabold text-xl tracking-tight">
                 <span className="text-white">DEVI</span>
                 <span
@@ -47,17 +71,60 @@ const Footer = ({ onOpenAdmin }) => {
               <strong className="text-sky-300 block mb-1">Fueling Digital Success</strong>
               We craft cutting-edge digital experiences — from web & mobile app development to data-driven marketing.
             </p>
-            {/* Contact info */}
-            <div className="space-y-2">
-              {[
-                { icon: Mail, text: 'thedeviaura@gmail.com' },
-                { icon: Phone, text: '+92 330 6386366' },
-                { icon: MapPin, text: 'Islamabad, Pakistan' },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-2 text-slate-400 text-sm">
-                  <Icon size={14} className="text-sky-400 shrink-0" />
-                  {text}
+
+            {/* Clickable Contact info */}
+            <div className="space-y-3 mb-6">
+              <a
+                href="mailto:thedeviaura@gmail.com"
+                className="flex items-center gap-2.5 text-slate-400 text-sm hover:text-sky-300 transition-colors group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-[#064699]/20 border border-[#064699]/40 flex items-center justify-center shrink-0 group-hover:border-sky-400 transition-colors">
+                  <Mail size={13} className="text-sky-400" />
                 </div>
+                <span>thedeviaura@gmail.com</span>
+              </a>
+
+              <a
+                href="tel:+923306386366"
+                className="flex items-center gap-2.5 text-slate-400 text-sm hover:text-sky-300 transition-colors group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-[#064699]/20 border border-[#064699]/40 flex items-center justify-center shrink-0 group-hover:border-sky-400 transition-colors">
+                  <Phone size={13} className="text-sky-400" />
+                </div>
+                <span>+92 330 6386366</span>
+              </a>
+
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=33.650194,73.152833"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 text-slate-400 text-sm hover:text-sky-300 transition-colors group"
+                title="View on Google Maps"
+              >
+                <div className="w-7 h-7 rounded-lg bg-[#064699]/20 border border-[#064699]/40 flex items-center justify-center shrink-0 group-hover:border-sky-400 transition-colors">
+                  <MapPin size={13} className="text-sky-400" />
+                </div>
+                <span>Islamabad, Pakistan</span>
+              </a>
+            </div>
+
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-3">
+              {[
+                { icon: InstagramIcon, href: 'https://www.instagram.com/the.deviaura', label: 'Instagram', color: 'hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10' },
+                { icon: FacebookIcon, href: 'https://www.facebook.com/share/1CrMk5xHpj/', label: 'Facebook', color: 'hover:text-blue-400 hover:border-blue-500/50 hover:bg-blue-500/10' },
+                { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/deviaura', label: 'LinkedIn', color: 'hover:text-sky-400 hover:border-sky-500/50 hover:bg-sky-500/10' },
+              ].map(({ icon: Icon, href, label, color }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className={`w-9 h-9 rounded-xl bg-[#061c24] border border-[#064699]/40 flex items-center justify-center text-slate-400 transition-all duration-300 hover:scale-110 shadow-sm ${color}`}
+                >
+                  <Icon size={16} />
+                </a>
               ))}
             </div>
           </div>

@@ -78,7 +78,9 @@ const Navbar = ({ onOpenAdmin }) => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <img src={logoImg} alt="DEVIAURA Logo" className="w-8 h-8 md:w-9 md:h-9 object-contain" />
+            <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white p-1 overflow-hidden flex items-center justify-center shrink-0 shadow-md">
+              <img src={logoImg} alt="DEVIAURA Logo" className="w-full h-full object-contain" />
+            </div>
             <span className="font-black text-lg md:text-xl tracking-tight">
               <span className="text-white">DEVI</span>
               <span
@@ -123,16 +125,8 @@ const Navbar = ({ onOpenAdmin }) => {
             })}
           </ul>
 
-          {/* CTA & Admin Button */}
+          {/* CTA Button */}
           <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={onOpenAdmin}
-              className="px-3.5 py-2 rounded-xl bg-[#061c24]/90 border border-[#064699]/40 text-slate-200 hover:text-white hover:border-sky-400 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm"
-              title="Open Admin Panel"
-            >
-              <ShieldCheck size={15} className="text-sky-400" /> Admin
-            </button>
-
             <Button onClick={() => handleNav('#contact')} variant="primary" size="sm">
               Get Started
             </Button>
@@ -171,16 +165,6 @@ const Navbar = ({ onOpenAdmin }) => {
                 {link.label}
               </motion.button>
             ))}
-
-            <button
-              onClick={() => {
-                setMenuOpen(false);
-                onOpenAdmin();
-              }}
-              className="px-5 py-2.5 rounded-xl bg-[#064699]/30 border border-[#064699]/50 text-sky-300 font-semibold text-base flex items-center gap-2"
-            >
-              <ShieldCheck size={18} /> Admin Panel
-            </button>
 
             <Button onClick={() => handleNav('#contact')} variant="primary" size="md">
               Get Started

@@ -67,14 +67,35 @@ const Projects = () => {
                     whileHover={{ y: -6 }}
                     className="group relative rounded-2xl overflow-hidden bg-[#061c24]/90 border border-[#064699]/30 hover:border-[#064699] hover:shadow-2xl transition-all duration-300 cursor-pointer backdrop-blur-sm"
                   >
-                    {/* Visual */}
-                    <div className={`relative h-48 bg-gradient-to-br ${project.gradient || 'from-[#064699] to-[#081e26]'} flex items-center justify-center p-4 overflow-hidden`}>
+                    {/* Visual Cover Container */}
+                    <div className="relative h-48 bg-[#04141b] flex items-center justify-center p-4 overflow-hidden">
+                      {/* Blurry Photo Background */}
                       {project.image ? (
-                        <img src={project.image} alt={project.title} className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" />
+                        <img
+                          src={project.image}
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute inset-0 w-full h-full object-cover scale-125 blur-xl opacity-70 transform-gpu select-none pointer-events-none"
+                        />
                       ) : (
-                        <span className="text-6xl">{project.icon || '🚀'}</span>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient || 'from-[#064699] to-[#081e26]'}`} />
                       )}
-                      <div className="absolute inset-0 bg-black/20" />
+
+                      {/* Dark overlay for optimal contrast */}
+                      <div className="absolute inset-0 bg-black/25 backdrop-blur-[1px]" />
+
+                      {/* Foreground crisp un-stretched image with clipped rounded corners */}
+                      {project.image ? (
+                        <div className="relative z-10 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-white/10 group-hover:scale-105 transition-transform duration-500 max-h-32 max-w-[85%]">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="max-h-32 max-w-full w-auto h-auto object-contain rounded-2xl"
+                          />
+                        </div>
+                      ) : (
+                        <span className="relative z-10 text-6xl">{project.icon || '🚀'}</span>
+                      )}
                       {project.link && (
                         <motion.a
                           href={project.link}
@@ -82,14 +103,14 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           initial={{ opacity: 0 }}
                           whileHover={{ opacity: 1 }}
-                          className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-[2px]"
+                          className="absolute z-20 inset-0 bg-black/50 flex items-center justify-center backdrop-blur-[2px]"
                         >
                           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
                             <ExternalLink size={20} className="text-white" />
                           </div>
                         </motion.a>
                       )}
-                      <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md text-white text-xs font-medium border border-white/20">
+                      <div className="absolute z-30 top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-semibold border border-white/30 shadow-lg pointer-events-none">
                         {project.tag || project.category}
                       </div>
                     </div>

@@ -107,7 +107,7 @@ const Services = () => {
               <p className="text-slate-400 text-sm leading-relaxed mb-6">{service.description}</p>
 
               {/* Features */}
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2">
                 {service.features.map((feat) => (
                   <li key={feat} className="flex items-center gap-2 text-slate-300 text-sm">
                     <span className={`w-1.5 h-1.5 rounded-full ${service.dotColor}`} />
@@ -115,10 +115,6 @@ const Services = () => {
                   </li>
                 ))}
               </ul>
-
-              <div className={`flex items-center gap-1 text-sm font-semibold text-sky-300 group-hover:gap-2 transition-all`}>
-                Learn More <ArrowRight size={14} className={service.iconText + ' group-hover:translate-x-1 transition-transform'} />
-              </div>
             </motion.div>
           ))}
         </div>

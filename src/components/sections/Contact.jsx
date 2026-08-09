@@ -10,14 +10,58 @@ const inputClass =
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', service: '', budget: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setTimeout(() => setSubmitted(true), 600);
+    setLoading(true);
+
+    const inquiry = {
+      ...formData,
+      id: Date.now(),
+      date: new Date().toLocaleString(),
+    };
+
+    // Save copy in Admin Inbox local storage so no inquiry is ever lost
+    try {
+      const savedInquiries = JSON.parse(localStorage.getItem('deviaura_inquiries') || '[]');
+      localStorage.setItem('deviaura_inquiries', JSON.stringify([inquiry, ...savedInquiries]));
+    } catch (err) {
+      console.error('Error saving inquiry locally:', err);
+    }
+
+    try {
+      // Send direct email to thedeviaura@gmail.com via Web3Forms API
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '5f9a6568-d0df-479c-9f89-c4fb94f1b5e2',
+          name: formData.name,
+          email: formData.email,
+          service: formData.service || 'General Inquiry',
+          budget: formData.budget || 'Not specified',
+          message: formData.message,
+          subject: `⚡ New Project Inquiry from ${formData.name} - DeviAura`,
+          from_name: 'DeviAura Website',
+        }),
+      });
+
+      const data = await res.json();
+      console.log('Web3Forms submission result:', data);
+    } catch (err) {
+      console.error('Email API submission error:', err);
+    } finally {
+      setLoading(false);
+      setSubmitted(true);
+    }
   };
 
   return (
@@ -43,36 +87,28 @@ const Contact = () => {
             className="lg:col-span-2 space-y-6"
           >
             {[
-              { icon: Mail, title: 'Email Us', detail: 'thedeviaura@gmail.com', sub: 'We reply within 24 hours', bg: 'bg-[#064699]/20', iconColor: 'text-sky-300' },
-              { icon: Phone, title: 'Call Us', detail: '+92 330 6386366', sub: 'Mon–Sat, 9am–9pm PKT', bg: 'bg-[#064699]/20', iconColor: 'text-cyan-300' },
-              { icon: MapPin, title: 'Find Us', detail: 'Islamabad, Pakistan', sub: 'Available globally, remote-first', bg: 'bg-[#064699]/20', iconColor: 'text-blue-300' },
-            ].map(({ icon: Icon, title, detail, sub, bg, iconColor }) => (
-              <motion.div
+              { icon: Mail, title: 'Email Us', detail: 'thedeviaura@gmail.com', href: 'mailto:thedeviaura@gmail.com', target: '_self', sub: 'We reply within 24 hours', bg: 'bg-[#064699]/20', iconColor: 'text-sky-300' },
+              { icon: Phone, title: 'Call Us', detail: '+92 330 6386366', href: 'tel:+923306386366', target: '_self', sub: 'Mon–Sat, 9am–9pm PKT', bg: 'bg-[#064699]/20', iconColor: 'text-cyan-300' },
+              { icon: MapPin, title: 'Find Us', detail: 'Islamabad, Pakistan', href: 'https://www.google.com/maps/search/?api=1&query=33.650194,73.152833', target: '_blank', sub: '33°39\'00.7"N 73°09\'10.2"E', bg: 'bg-[#064699]/20', iconColor: 'text-blue-300' },
+            ].map(({ icon: Icon, title, detail, href, target, sub, bg, iconColor }) => (
+              <motion.a
                 key={title}
+                href={href}
+                target={target}
+                rel={target === '_blank' ? 'noopener noreferrer' : undefined}
                 whileHover={{ x: 4 }}
-                className="flex items-start gap-4 p-5 rounded-2xl bg-[#061c24]/90 border border-[#064699]/30 hover:border-[#064699] hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
+                className="flex items-start gap-4 p-5 rounded-2xl bg-[#061c24]/90 border border-[#064699]/30 hover:border-sky-400 hover:shadow-xl transition-all duration-300 backdrop-blur-sm group"
               >
-                <div className={`w-11 h-11 rounded-xl ${bg} flex items-center justify-center shrink-0 border border-[#064699]/40`}>
+                <div className={`w-11 h-11 rounded-xl ${bg} flex items-center justify-center shrink-0 border border-[#064699]/40 group-hover:border-sky-400 transition-colors`}>
                   <Icon size={20} className={iconColor} />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm">{title}</p>
+                  <p className="text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">{title}</p>
                   <p className="text-slate-300 text-sm mt-0.5">{detail}</p>
                   <p className="text-slate-500 text-xs mt-0.5">{sub}</p>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
-
-            {/* Free call card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-[#082938] via-[#061c24] to-[#04141b] border border-[#064699]/40">
-              <h4 className="text-white font-semibold mb-2">Free Strategy Call</h4>
-              <p className="text-slate-400 text-sm mb-4">
-                Book a complimentary consultation to discuss your project goals.
-              </p>
-              <Button href="#" variant="outline" size="sm">
-                Book a Call
-              </Button>
-            </div>
           </motion.div>
 
           {/* Right form */}
@@ -146,8 +182,8 @@ const Contact = () => {
                     <textarea id="contact-message" name="message" rows={5} required placeholder="Tell us about your project, goals, and timeline..." value={formData.message} onChange={handleChange} className={`${inputClass} resize-none`} />
                   </div>
 
-                  <Button type="submit" variant="primary" size="lg" className="w-full justify-center group">
-                    Send Message
+                  <Button type="submit" variant="primary" size="lg" disabled={loading} className="w-full justify-center group">
+                    {loading ? 'Sending Message...' : 'Send Message'}
                     <Send size={16} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Button>
                 </form>
