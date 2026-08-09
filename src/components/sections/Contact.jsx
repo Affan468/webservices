@@ -7,6 +7,13 @@ import Button from '../ui/Button';
 const inputClass =
   'w-full px-4 py-3.5 rounded-xl bg-[#061c24]/90 border border-[#064699]/30 text-white placeholder-slate-500 focus:outline-none focus:border-[#064699] focus:bg-[#061c24] focus:ring-4 focus:ring-[#064699]/20 transition-all duration-200 text-sm';
 
+const WhatsAppIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" {...props}>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.71 0-3.313-.48-4.686-1.315l-.336-.204-2.957.826.837-2.883-.223-.357A7.95 7.95 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+  </svg>
+);
+
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', service: '', budget: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -84,11 +91,12 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-4"
           >
             {[
               { icon: Mail, title: 'Email Us', detail: 'thedeviaura@gmail.com', href: 'mailto:thedeviaura@gmail.com', target: '_self', sub: 'We reply within 24 hours', bg: 'bg-[#064699]/20', iconColor: 'text-sky-300' },
-              { icon: Phone, title: 'Call Us', detail: '+92 330 6386366', href: 'tel:+923306386366', target: '_self', sub: 'Mon–Sat, 9am–9pm PKT', bg: 'bg-[#064699]/20', iconColor: 'text-cyan-300' },
+              { icon: Phone, title: 'Call Us', detail: '+92 330 6386366', href: 'tel:+923306386366', target: '_self', sub: null, bg: 'bg-[#064699]/20', iconColor: 'text-cyan-300' },
+              { icon: WhatsAppIcon, title: 'WhatsApp Us', detail: '+92 330 6386366', href: 'https://wa.me/923306386366', target: '_blank', sub: 'Instant Chat Support', bg: 'bg-emerald-500/20', iconColor: 'text-emerald-400' },
               { icon: MapPin, title: 'Find Us', detail: 'Islamabad, Pakistan', href: 'https://www.google.com/maps/search/?api=1&query=33.650194,73.152833', target: '_blank', sub: '33°39\'00.7"N 73°09\'10.2"E', bg: 'bg-[#064699]/20', iconColor: 'text-blue-300' },
             ].map(({ icon: Icon, title, detail, href, target, sub, bg, iconColor }) => (
               <motion.a
@@ -105,7 +113,7 @@ const Contact = () => {
                 <div>
                   <p className="text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">{title}</p>
                   <p className="text-slate-300 text-sm mt-0.5">{detail}</p>
-                  <p className="text-slate-500 text-xs mt-0.5">{sub}</p>
+                  {sub && <p className="text-slate-500 text-xs mt-0.5">{sub}</p>}
                 </div>
               </motion.a>
             ))}
