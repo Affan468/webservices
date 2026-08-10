@@ -44,8 +44,6 @@ const Portfolio = () => {
 
   return (
     <section id="portfolio" className="py-32 bg-gray-50 relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-cyan-400/40 to-transparent" />
-
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           badge="Our Work"

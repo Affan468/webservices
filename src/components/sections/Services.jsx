@@ -69,9 +69,6 @@ const cardVariants = {
 const Services = () => {
   return (
     <section id="services" className="py-32 bg-white relative">
-      {/* Top divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-blue-200 to-transparent" />
-
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           badge="What We Do"

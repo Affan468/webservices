@@ -118,7 +118,7 @@ const Testimonials = () => {
         </div>
 
         {/* Client logos row */}
-        <div className="mt-20 border-t border-gray-100 pt-16">
+        <div className="mt-20 pt-16">
           <p className="text-center text-gray-400 text-sm uppercase tracking-widest mb-10">Trusted by industry leaders</p>
           <div className="flex flex-wrap justify-center gap-10">
             {['Vercel', 'Shopify', 'Stripe', 'HubSpot', 'Atlassian', 'Notion'].map((logo) => (

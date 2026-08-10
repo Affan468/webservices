@@ -49,7 +49,7 @@ const footerLinks = {
 
 const Footer = ({ onOpenAdmin }) => {
   return (
-    <footer className="bg-[#061d36] border-t border-sky-400/20 pt-20 pb-10 relative overflow-hidden">
+    <footer className="bg-[#061d36] pt-20 pb-10 relative overflow-hidden">
       {/* Decorative subtle blue wash */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-sky-400/10 to-transparent pointer-events-none" />
 

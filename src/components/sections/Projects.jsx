@@ -22,8 +22,6 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-32 bg-slate-50 relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-blue-200 to-transparent" />
-
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           badge="Our Projects"
