@@ -45,19 +45,13 @@ const footerLinks = {
     { label: 'Contact', href: '#contact' },
     { label: 'About Us', href: '#about' },
   ],
-  Support: [
-    { label: 'Contact Us', href: '#contact' },
-    { label: 'FAQ', href: '#' },
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-  ],
 };
 
 const Footer = ({ onOpenAdmin }) => {
   return (
     <footer className="bg-[#04141b] border-t border-[#064699]/30 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
