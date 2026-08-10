@@ -31,8 +31,6 @@ const AnimatedSection = ({ children }) => (
     variants={sectionVariants}
     className="relative overflow-hidden transform-gpu"
   >
-    {/* Glowing transition beam between sections */}
-    <div className="w-full h-px bg-gradient-to-r from-transparent via-sky-400/20 to-transparent" />
     {children}
   </motion.div>
 );
@@ -42,7 +40,7 @@ function App() {
 
   return (
     <ProjectProvider>
-      <div className="min-h-screen bg-[#081e26] text-slate-100 font-sans selection:bg-[#064699]/40 selection:text-sky-200">
+      <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-700">
         {showAdmin ? (
           <AdminPanel onBack={() => setShowAdmin(false)} />
         ) : (
