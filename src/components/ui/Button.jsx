@@ -17,6 +17,8 @@ const Button = ({
       'bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 text-white font-bold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105',
     outline:
       'border border-blue-200 text-blue-700 bg-white hover:bg-blue-50/80 hover:border-blue-400 shadow-sm',
+    darkOutline:
+      'border border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white/20 hover:border-white shadow-lg',
     ghost:
       'text-slate-700 hover:text-blue-600 hover:bg-blue-50',
   };

@@ -230,8 +230,8 @@ const Hero = () => {
             Start Your Project
             <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button href="#services" variant="outline" size="md" className="group border-sky-300/50 text-white hover:bg-white/10 hover:border-white">
-            <Play size={16} className="mr-2 fill-current" />
+          <Button href="#services" variant="darkOutline" size="md" className="group">
+            <Play size={16} className="mr-2 fill-current text-sky-300 group-hover:text-white transition-colors" />
             Explore Services
           </Button>
         </motion.div>
