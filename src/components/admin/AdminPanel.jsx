@@ -26,13 +26,17 @@ const inputClass =
   'w-full px-4 py-3 rounded-xl bg-[#061c24] border border-[#064699]/40 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 transition-all text-sm';
 
 const AdminPanel = ({ onBack }) => {
-  const { projects, addProject, updateProject, deleteProject, resetProjects } = useProjects();
+  const { 
+    projects, addProject, updateProject, deleteProject, resetProjects,
+    plans, addPlan, updatePlan, deletePlan, resetPlans 
+  } = useProjects();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState('');
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [editingProject, setEditingProject] = useState(null);
-  const [activeTab, setActiveTab] = useState('projects'); // 'projects' | 'inquiries'
+  const [editingPlan, setEditingPlan] = useState(null);
+  const [activeTab, setActiveTab] = useState('projects'); // 'projects' | 'pricing' | 'inquiries'
 
   const [inquiries, setInquiries] = useState(() => {
     try {
@@ -48,7 +52,7 @@ const AdminPanel = ({ onBack }) => {
     localStorage.setItem('deviaura_inquiries', JSON.stringify(updated));
   };
 
-  // Form State
+  // Project Form State
   const [formData, setFormData] = useState({
     title: '',
     category: 'Web Dev',
@@ -58,6 +62,91 @@ const AdminPanel = ({ onBack }) => {
     image: '',
     icon: '🚀',
   });
+
+  // Pricing Plan Form State
+  const [planFormData, setPlanFormData] = useState({
+    name: '',
+    monthly: '',
+    yearly: '',
+    description: '',
+    popular: false,
+    features: '',
+    notIncluded: '',
+  });
+
+  const handlePlanEdit = (p) => {
+    setEditingPlan(p);
+    setPlanFormData({
+      name: p.name || '',
+      monthly: p.monthly || '',
+      yearly: p.yearly || '',
+      description: p.description || '',
+      popular: !!p.popular,
+      features: (p.features || []).join('\n'),
+      notIncluded: (p.notIncluded || []).join('\n'),
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePlanCancelEdit = () => {
+    setEditingPlan(null);
+    setPlanFormData({
+      name: '',
+      monthly: '',
+      yearly: '',
+      description: '',
+      popular: false,
+      features: '',
+      notIncluded: '',
+    });
+  };
+
+  const handlePlanSubmit = (e) => {
+    e.preventDefault();
+    if (!planFormData.name || !planFormData.monthly || !planFormData.yearly) {
+      alert('Please fill out Plan Name and Prices!');
+      return;
+    }
+
+    const formattedFeatures = planFormData.features
+      ? planFormData.features.split('\n').map((f) => f.trim()).filter(Boolean)
+      : [];
+
+    const formattedNotIncluded = planFormData.notIncluded
+      ? planFormData.notIncluded.split('\n').map((f) => f.trim()).filter(Boolean)
+      : [];
+
+    const payload = {
+      name: planFormData.name,
+      monthly: Number(planFormData.monthly),
+      yearly: Number(planFormData.yearly),
+      description: planFormData.description,
+      popular: planFormData.popular,
+      features: formattedFeatures,
+      notIncluded: formattedNotIncluded,
+    };
+
+    if (editingPlan) {
+      updatePlan({ ...payload, id: editingPlan.id });
+      setSuccessMsg(`Pricing plan "${planFormData.name}" updated successfully!`);
+      setEditingPlan(null);
+    } else {
+      addPlan(payload);
+      setSuccessMsg(`Pricing plan "${planFormData.name}" added successfully!`);
+    }
+
+    setTimeout(() => setSuccessMsg(''), 4000);
+
+    setPlanFormData({
+      name: '',
+      monthly: '',
+      yearly: '',
+      description: '',
+      popular: false,
+      features: '',
+      notIncluded: '',
+    });
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -228,7 +317,7 @@ const AdminPanel = ({ onBack }) => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex items-center gap-3 my-8">
+        <div className="flex flex-wrap items-center gap-3 my-8">
           <button
             onClick={() => setActiveTab('projects')}
             className={`px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all ${
@@ -238,6 +327,17 @@ const AdminPanel = ({ onBack }) => {
             }`}
           >
             <Sparkles size={16} /> Projects Manager ({projects.length})
+          </button>
+
+          <button
+            onClick={() => setActiveTab('pricing')}
+            className={`px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all ${
+              activeTab === 'pricing'
+                ? 'bg-gradient-to-r from-sky-400 via-[#064699] to-blue-600 text-white shadow-lg shadow-[#064699]/30'
+                : 'bg-[#061c24] border border-[#064699]/30 text-slate-400 hover:text-white'
+            }`}
+          >
+            <DollarSign size={16} /> Pricing Manager ({plans.length})
           </button>
 
           <button
@@ -485,6 +585,221 @@ const AdminPanel = ({ onBack }) => {
                         Visit Link <ExternalLink size={12} />
                       </a>
                     )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : activeTab === 'pricing' ? (
+          /* Pricing Manager View */
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Add / Edit Pricing Plan Form (7 cols) */}
+            <div className="lg:col-span-7">
+              <div className="p-8 rounded-3xl bg-[#061c24]/90 border border-[#064699]/30 backdrop-blur-md shadow-xl">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    {editingPlan ? (
+                      <Edit3 className="text-sky-400" size={22} />
+                    ) : (
+                      <PlusCircle className="text-sky-400" size={22} />
+                    )}
+                    <h2 className="text-xl font-bold text-white">
+                      {editingPlan ? `Edit Pricing Plan: ${editingPlan.name}` : 'Add New Pricing Plan'}
+                    </h2>
+                  </div>
+
+                  {editingPlan && (
+                    <button
+                      type="button"
+                      onClick={handlePlanCancelEdit}
+                      className="px-3 py-1 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-colors"
+                    >
+                      Cancel Edit
+                    </button>
+                  )}
+                </div>
+
+                <form onSubmit={handlePlanSubmit} className="space-y-5">
+                  {/* Plan Name */}
+                  <div>
+                    <label className="block text-slate-400 text-xs font-semibold uppercase mb-2">Plan Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Starter, Growth, Enterprise, Custom"
+                      value={planFormData.name}
+                      onChange={(e) => setPlanFormData({ ...planFormData, name: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
+
+                  {/* Monthly & Yearly Prices */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-slate-400 text-xs font-semibold uppercase mb-2">Monthly Price ($ / mo) *</label>
+                      <input
+                        type="number"
+                        required
+                        placeholder="e.g. 499"
+                        value={planFormData.monthly}
+                        onChange={(e) => setPlanFormData({ ...planFormData, monthly: e.target.value })}
+                        className={inputClass}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-slate-400 text-xs font-semibold uppercase mb-2">Yearly Price ($ / mo) *</label>
+                      <input
+                        type="number"
+                        required
+                        placeholder="e.g. 399"
+                        value={planFormData.yearly}
+                        onChange={(e) => setPlanFormData({ ...planFormData, yearly: e.target.value })}
+                        className={inputClass}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Plan Description */}
+                  <div>
+                    <label className="block text-slate-400 text-xs font-semibold uppercase mb-2">Plan Description</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Perfect for small businesses getting started online."
+                      value={planFormData.description}
+                      onChange={(e) => setPlanFormData({ ...planFormData, description: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
+
+                  {/* Popular Badge Toggle */}
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-[#04141b] border border-[#064699]/30">
+                    <input
+                      type="checkbox"
+                      id="plan-popular"
+                      checked={planFormData.popular}
+                      onChange={(e) => setPlanFormData({ ...planFormData, popular: e.target.checked })}
+                      className="w-4 h-4 rounded text-sky-400 bg-[#061c24] border-[#064699]"
+                    />
+                    <label htmlFor="plan-popular" className="text-white text-xs font-semibold cursor-pointer">
+                      Highlight as "Most Popular" Plan (Glow Accent & Badge)
+                    </label>
+                  </div>
+
+                  {/* Included Features */}
+                  <div>
+                    <label className="block text-slate-400 text-xs font-semibold uppercase mb-2">
+                      Included Features (One feature per line)
+                    </label>
+                    <textarea
+                      rows={4}
+                      placeholder="5-page responsive website&#10;Basic SEO setup&#10;Google Analytics integration&#10;Mobile optimized"
+                      value={planFormData.features}
+                      onChange={(e) => setPlanFormData({ ...planFormData, features: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
+
+                  {/* Excluded Features */}
+                  <div>
+                    <label className="block text-slate-400 text-xs font-semibold uppercase mb-2">
+                      Not Included / Excluded Features (One per line)
+                    </label>
+                    <textarea
+                      rows={2}
+                      placeholder="Custom animations&#10;Dedicated account manager"
+                      value={planFormData.notIncluded}
+                      onChange={(e) => setPlanFormData({ ...planFormData, notIncluded: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-4 rounded-xl bg-gradient-to-r from-sky-400 via-[#064699] to-blue-600 text-white font-bold text-sm shadow-xl shadow-[#064699]/30 hover:opacity-95 transition-opacity"
+                  >
+                    {editingPlan ? 'Update Pricing Plan' : 'Save & Publish Pricing Plan'}
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            {/* Active Pricing Plans List (5 cols) */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                  Active Pricing Plans ({plans.length})
+                </h2>
+                <button
+                  onClick={resetPlans}
+                  className="px-3 py-1.5 rounded-lg bg-[#061c24] border border-[#064699]/40 text-slate-400 hover:text-white text-xs font-semibold transition-colors"
+                >
+                  Reset Defaults
+                </button>
+              </div>
+
+              <div className="space-y-4 max-h-[750px] overflow-y-auto pr-1">
+                {plans.map((pl) => (
+                  <div
+                    key={pl.id}
+                    className={`p-5 rounded-2xl bg-[#061c24]/90 border transition-all backdrop-blur-sm ${
+                      editingPlan?.id === pl.id
+                        ? 'border-sky-400 shadow-lg shadow-sky-400/20'
+                        : pl.popular
+                        ? 'border-[#064699] bg-gradient-to-b from-[#082938] via-[#061c24] to-[#04141b]'
+                        : 'border-[#064699]/30'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-white font-bold text-lg">{pl.name}</h4>
+                          {pl.popular && (
+                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#064699] to-sky-400 text-white text-[10px] font-bold">
+                              Popular
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-slate-400 text-xs mt-1">{pl.description}</p>
+                      </div>
+
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          onClick={() => handlePlanEdit(pl)}
+                          className="p-2 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 hover:bg-sky-500 hover:text-white transition-colors"
+                          title="Edit Plan"
+                        >
+                          <Edit3 size={16} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            if (confirm(`Are you sure you want to delete plan "${pl.name}"?`)) {
+                              deletePlan(pl.id);
+                              if (editingPlan?.id === pl.id) {
+                                handlePlanCancelEdit();
+                              }
+                            }
+                          }}
+                          className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500 hover:text-white transition-colors"
+                          title="Delete Plan"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="my-3 flex items-baseline gap-2">
+                      <span className="text-2xl font-extrabold text-white">${pl.monthly}/mo</span>
+                      <span className="text-slate-400 text-xs">(Yearly: ${pl.yearly}/mo)</span>
+                    </div>
+
+                    <div className="text-xs text-slate-400 space-y-1">
+                      <p className="font-semibold text-sky-300">Included ({pl.features?.length || 0}):</p>
+                      <ul className="list-disc list-inside space-y-0.5 text-slate-300 max-h-24 overflow-y-auto pr-1">
+                        {pl.features?.map((f, idx) => (
+                          <li key={idx} className="truncate">{f}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -3,38 +3,10 @@ import { motion } from 'framer-motion';
 import { Check, Zap } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
-
-const plans = [
-  {
-    name: 'Starter', monthly: 499, yearly: 399,
-    description: 'Perfect for small businesses just getting started online.',
-    features: ['5-page responsive website', 'Basic SEO setup', 'Google Analytics integration', '1 month support', 'Contact form', 'Mobile optimized'],
-    notIncluded: ['Custom animations', 'PPC management', 'Monthly reporting'],
-    popular: false,
-    cardBg: 'bg-[#061c24]/90',
-    border: 'border-[#064699]/30',
-  },
-  {
-    name: 'Growth', monthly: 1299, yearly: 999,
-    description: 'For growing businesses ready to dominate their niche.',
-    features: ['Up to 15 pages + CMS', 'Full SEO optimization', 'Google & Meta Ads management', '3 months priority support', 'Monthly performance reports', 'Custom animations', 'A/B testing setup', 'Email marketing (1k contacts)'],
-    notIncluded: ['Dedicated account manager'],
-    popular: true,
-    cardBg: 'bg-gradient-to-b from-[#082938] via-[#061c24] to-[#04141b]',
-    border: 'border-[#064699]',
-  },
-  {
-    name: 'Enterprise', monthly: 2999, yearly: 2499,
-    description: 'Full-service digital partnership for ambitious brands.',
-    features: ['Unlimited pages + custom features', 'Advanced SEO + link building', 'Full PPC management (all platforms)', '12 months dedicated support', 'Weekly strategy calls', 'Custom integrations & APIs', 'E-commerce setup', 'Dedicated account manager', 'Priority SLA'],
-    notIncluded: [],
-    popular: false,
-    cardBg: 'bg-[#061c24]/90',
-    border: 'border-[#064699]/30',
-  },
-];
+import { useProjects } from '../../context/ProjectContext';
 
 const Pricing = () => {
+  const { plans } = useProjects();
   const [isYearly, setIsYearly] = useState(false);
 
   return (
@@ -117,13 +89,13 @@ const Pricing = () => {
               </div>
 
               <ul className="space-y-3 mb-8 flex-1">
-                {plan.features.map((feat) => (
+                {plan.features?.map((feat) => (
                   <li key={feat} className="flex items-start gap-3 text-sm text-slate-300">
                     <Check size={16} className="text-sky-400 shrink-0 mt-0.5" />
                     {feat}
                   </li>
                 ))}
-                {plan.notIncluded.map((feat) => (
+                {plan.notIncluded?.map((feat) => (
                   <li key={feat} className="flex items-start gap-3 text-sm text-slate-600 line-through">
                     <Check size={16} className="text-slate-700 shrink-0 mt-0.5" />
                     {feat}
