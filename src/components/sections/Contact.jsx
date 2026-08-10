@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
 
@@ -97,7 +97,6 @@ const Contact = () => {
               { icon: Mail, title: 'Email Us', detail: 'thedeviaura@gmail.com', href: 'mailto:thedeviaura@gmail.com', target: '_self', sub: 'We reply within 24 hours', bg: 'bg-[#064699]/20', iconColor: 'text-sky-300' },
               { icon: Phone, title: 'Call Us', detail: '+92 330 6386366', href: 'tel:+923306386366', target: '_self', sub: null, bg: 'bg-[#064699]/20', iconColor: 'text-cyan-300' },
               { icon: WhatsAppIcon, title: 'WhatsApp Us', detail: '+92 330 6386366', href: 'https://wa.me/923306386366', target: '_blank', sub: 'Instant Chat Support', bg: 'bg-emerald-500/20', iconColor: 'text-emerald-400' },
-              { icon: MapPin, title: 'Find Us', detail: 'Islamabad, Pakistan', href: 'https://www.google.com/maps/search/?api=1&query=33.650194,73.152833', target: '_blank', sub: '33°39\'00.7"N 73°09\'10.2"E', bg: 'bg-[#064699]/20', iconColor: 'text-blue-300' },
             ].map(({ icon: Icon, title, detail, href, target, sub, bg, iconColor }) => (
               <motion.a
                 key={title}

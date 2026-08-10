@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import logoImg from '../../assets/image.png';
 
 const InstagramIcon = (props) => (
@@ -93,19 +93,6 @@ const Footer = ({ onOpenAdmin }) => {
                   <Phone size={13} className="text-sky-400" />
                 </div>
                 <span>+92 330 6386366</span>
-              </a>
-
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=33.650194,73.152833"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-slate-400 text-sm hover:text-sky-300 transition-colors group"
-                title="View on Google Maps"
-              >
-                <div className="w-7 h-7 rounded-lg bg-[#064699]/20 border border-[#064699]/40 flex items-center justify-center shrink-0 group-hover:border-sky-400 transition-colors">
-                  <MapPin size={13} className="text-sky-400" />
-                </div>
-                <span>Islamabad, Pakistan</span>
               </a>
             </div>
 
