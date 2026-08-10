@@ -66,8 +66,8 @@ const Navbar = ({ onOpenAdmin }) => {
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-gradient-to-r from-sky-950/95 via-[#064699]/90 to-slate-950/95 backdrop-blur-xl border-b border-sky-400/50 shadow-lg shadow-sky-950/60'
-            : 'bg-gradient-to-r from-sky-950/80 via-[#064699]/70 to-slate-950/80 backdrop-blur-md border-b border-sky-400/30'
+            ? 'bg-white/90 backdrop-blur-xl border-b border-blue-100 shadow-md shadow-blue-900/5'
+            : 'bg-white/80 backdrop-blur-md border-b border-slate-100'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-2.5 md:py-3 flex items-center justify-between">
@@ -78,14 +78,13 @@ const Navbar = ({ onOpenAdmin }) => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white p-1 overflow-hidden flex items-center justify-center shrink-0 shadow-md">
+            <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white p-1 overflow-hidden flex items-center justify-center shrink-0 shadow-md border border-slate-100">
               <img src={logoImg} alt="DEVIAURA Logo" className="w-full h-full object-contain" />
             </div>
             <span className="font-black text-lg md:text-xl tracking-tight">
-              <span className="text-white">DEVI</span>
+              <span className="text-slate-900">DEVI</span>
               <span
-                className="bg-gradient-to-t from-[#1d4ed8] via-[#38bdf8] to-[#87CEEB] bg-clip-text text-transparent"
-                style={{ WebkitTextStroke: '0.4px rgba(255, 255, 255, 0.45)' }}
+                className="bg-gradient-to-r from-[#1d4ed8] via-[#38bdf8] to-[#0284c7] bg-clip-text text-transparent"
               >
                 ΛURΛ
               </span>
@@ -106,18 +105,18 @@ const Navbar = ({ onOpenAdmin }) => {
                   <button
                     onClick={() => handleNav(link.href)}
                     className={`text-sm font-semibold tracking-wide transition-colors duration-200 relative py-1.5 px-1 group ${
-                      isActive ? 'text-sky-300 font-bold' : 'text-sky-100 hover:text-white'
+                      isActive ? 'text-blue-600 font-bold' : 'text-slate-600 hover:text-blue-600'
                     }`}
                   >
                     {link.label}
                     {isActive ? (
                       <motion.span
                         layoutId="activeNavIndicator"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 rounded-full shadow-[0_0_10px_#38bdf8]"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 rounded-full shadow-sm"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                     ) : (
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300 rounded-full" />
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 group-hover:w-full transition-all duration-300 rounded-full" />
                     )}
                   </button>
                 </motion.li>
@@ -134,7 +133,7 @@ const Navbar = ({ onOpenAdmin }) => {
 
           {/* Mobile hamburger */}
           <motion.button
-            className="md:hidden text-slate-200 p-2"
+            className="md:hidden text-slate-800 p-2"
             onClick={() => setMenuOpen(!menuOpen)}
             whileTap={{ scale: 0.9 }}
           >
@@ -151,7 +150,7 @@ const Navbar = ({ onOpenAdmin }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed inset-0 z-40 bg-[#081e26]/98 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 text-white"
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 text-slate-900"
           >
             {navLinks.map((link, i) => (
               <motion.button
@@ -160,7 +159,7 @@ const Navbar = ({ onOpenAdmin }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 }}
                 onClick={() => handleNav(link.href)}
-                className="text-2xl font-semibold text-slate-200 hover:text-white transition-colors"
+                className="text-2xl font-semibold text-slate-800 hover:text-blue-600 transition-colors"
               >
                 {link.label}
               </motion.button>

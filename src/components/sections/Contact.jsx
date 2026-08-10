@@ -5,7 +5,7 @@ import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
 
 const inputClass =
-  'w-full px-4 py-3.5 rounded-xl bg-[#061c24]/90 border border-[#064699]/30 text-white placeholder-slate-500 focus:outline-none focus:border-[#064699] focus:bg-[#061c24] focus:ring-4 focus:ring-[#064699]/20 transition-all duration-200 text-sm';
+  'w-full px-4 py-3.5 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200 text-sm';
 
 const WhatsAppIcon = (props) => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" {...props}>
@@ -72,9 +72,9 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 bg-[#081e26] relative overflow-hidden">
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-[#064699]/20 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#064699]/20 blur-3xl pointer-events-none" />
+    <section id="contact" className="py-32 bg-slate-50 relative overflow-hidden">
+      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-100/40 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-sky-100/40 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
@@ -94,9 +94,9 @@ const Contact = () => {
             className="lg:col-span-2 space-y-4"
           >
             {[
-              { icon: Mail, title: 'Email Us', detail: 'thedeviaura@gmail.com', href: 'mailto:thedeviaura@gmail.com', target: '_self', sub: 'We reply within 24 hours', bg: 'bg-[#064699]/20', iconColor: 'text-sky-300' },
-              { icon: Phone, title: 'Call Us', detail: '+92 330 6386366', href: 'tel:+923306386366', target: '_self', sub: null, bg: 'bg-[#064699]/20', iconColor: 'text-cyan-300' },
-              { icon: WhatsAppIcon, title: 'WhatsApp Us', detail: '+92 330 6386366', href: 'https://wa.me/923306386366', target: '_blank', sub: 'Instant Chat Support', bg: 'bg-emerald-500/20', iconColor: 'text-emerald-400' },
+              { icon: Mail, title: 'Email Us', detail: 'thedeviaura@gmail.com', href: 'mailto:thedeviaura@gmail.com', target: '_self', sub: 'We reply within 24 hours', bg: 'bg-blue-50', iconColor: 'text-blue-600' },
+              { icon: Phone, title: 'Call Us', detail: '+92 330 6386366', href: 'tel:+923306386366', target: '_self', sub: null, bg: 'bg-sky-50', iconColor: 'text-sky-600' },
+              { icon: WhatsAppIcon, title: 'WhatsApp Us', detail: '+92 330 6386366', href: 'https://wa.me/923306386366', target: '_blank', sub: 'Instant Chat Support', bg: 'bg-emerald-50', iconColor: 'text-emerald-600' },
             ].map(({ icon: Icon, title, detail, href, target, sub, bg, iconColor }) => (
               <motion.a
                 key={title}
@@ -104,14 +104,14 @@ const Contact = () => {
                 target={target}
                 rel={target === '_blank' ? 'noopener noreferrer' : undefined}
                 whileHover={{ x: 4 }}
-                className="flex items-start gap-4 p-5 rounded-2xl bg-[#061c24]/90 border border-[#064699]/30 hover:border-sky-400 hover:shadow-xl transition-all duration-300 backdrop-blur-sm group"
+                className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-slate-200/80 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 backdrop-blur-sm group"
               >
-                <div className={`w-11 h-11 rounded-xl ${bg} flex items-center justify-center shrink-0 border border-[#064699]/40 group-hover:border-sky-400 transition-colors`}>
+                <div className={`w-11 h-11 rounded-xl ${bg} flex items-center justify-center shrink-0 border border-slate-200/60 group-hover:border-blue-400 transition-colors`}>
                   <Icon size={20} className={iconColor} />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm group-hover:text-sky-300 transition-colors">{title}</p>
-                  <p className="text-slate-300 text-sm mt-0.5">{detail}</p>
+                  <p className="text-slate-900 font-bold text-sm group-hover:text-blue-600 transition-colors">{title}</p>
+                  <p className="text-slate-700 text-sm mt-0.5">{detail}</p>
                   {sub && <p className="text-slate-500 text-xs mt-0.5">{sub}</p>}
                 </div>
               </motion.a>
@@ -126,7 +126,7 @@ const Contact = () => {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="lg:col-span-3"
           >
-            <div className="p-8 md:p-10 rounded-2xl bg-[#061c24]/90 border border-[#064699]/30 shadow-2xl shadow-[#04141b]/50 backdrop-blur-md">
+            <div className="p-8 md:p-10 rounded-2xl bg-white border border-slate-200 shadow-xl shadow-blue-500/5 backdrop-blur-md">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -138,10 +138,10 @@ const Contact = () => {
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
                   >
-                    <CheckCircle2 size={64} className="text-sky-400 mb-6" />
+                    <CheckCircle2 size={64} className="text-blue-600 mb-6" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Message Sent! 🎉</h3>
-                  <p className="text-slate-400 text-sm max-w-xs">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">Message Sent! 🎉</h3>
+                  <p className="text-slate-600 text-sm max-w-xs">
                     Thank you for reaching out. We'll review your message and get back to you within 24 hours.
                   </p>
                 </motion.div>
@@ -149,29 +149,29 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-slate-400 text-xs font-semibold mb-2 uppercase tracking-wide">Your Name</label>
+                      <label className="block text-slate-700 text-xs font-semibold mb-2 uppercase tracking-wide">Your Name</label>
                       <input id="contact-name" name="name" type="text" required placeholder="John Smith" value={formData.name} onChange={handleChange} className={inputClass} />
                     </div>
                     <div>
-                      <label className="block text-slate-400 text-xs font-semibold mb-2 uppercase tracking-wide">Email Address</label>
+                      <label className="block text-slate-700 text-xs font-semibold mb-2 uppercase tracking-wide">Email Address</label>
                       <input id="contact-email" name="email" type="email" required placeholder="john@company.com" value={formData.email} onChange={handleChange} className={inputClass} />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-slate-400 text-xs font-semibold mb-2 uppercase tracking-wide">Service Needed</label>
-                      <select id="contact-service" name="service" value={formData.service} onChange={handleChange} className={`${inputClass} appearance-none bg-[#061c24]`}>
-                        <option value="" disabled className="bg-[#061c24] text-slate-400">Select a service</option>
-                        <option className="bg-[#061c24] text-white">Web Development</option>
-                        <option className="bg-[#061c24] text-white">Mobile App Development</option>
-                        <option className="bg-[#061c24] text-white">SEO</option>
-                        <option className="bg-[#061c24] text-white">Digital Marketing</option>
-                        <option className="bg-[#061c24] text-white">Full Package</option>
+                      <label className="block text-slate-700 text-xs font-semibold mb-2 uppercase tracking-wide">Service Needed</label>
+                      <select id="contact-service" name="service" value={formData.service} onChange={handleChange} className={`${inputClass} appearance-none bg-white`}>
+                        <option value="" disabled className="bg-white text-slate-400">Select a service</option>
+                        <option className="bg-white text-slate-900">Web Development</option>
+                        <option className="bg-white text-slate-900">Mobile App Development</option>
+                        <option className="bg-white text-slate-900">SEO</option>
+                        <option className="bg-white text-slate-900">Digital Marketing</option>
+                        <option className="bg-white text-slate-900">Full Package</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-slate-400 text-xs font-semibold mb-2 uppercase tracking-wide">Your Budget</label>
+                      <label className="block text-slate-700 text-xs font-semibold mb-2 uppercase tracking-wide">Your Budget</label>
                       <input
                         id="contact-budget"
                         name="budget"
@@ -185,7 +185,7 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-slate-400 text-xs font-semibold mb-2 uppercase tracking-wide">Project Details</label>
+                    <label className="block text-slate-700 text-xs font-semibold mb-2 uppercase tracking-wide">Project Details</label>
                     <textarea id="contact-message" name="message" rows={5} required placeholder="Tell us about your project, goals, and timeline..." value={formData.message} onChange={handleChange} className={`${inputClass} resize-none`} />
                   </div>
 

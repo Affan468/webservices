@@ -9,12 +9,12 @@ const services = [
     description:
       'Lightning-fast, fully responsive websites and web applications built with modern frameworks like React and Next.js. Engineered for speed, accessibility, and conversion.',
     features: ['React / Next.js Frameworks', 'Performance & Speed Optimized', 'Mobile-First Responsive Design', 'Custom CMS & API Integrations'],
-    gradient: 'from-[#064699] via-sky-400 to-[#081e26]',
-    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
-    iconText: 'text-sky-300',
-    dotColor: 'bg-sky-400',
-    border: 'hover:border-[#064699]',
-    shadow: 'hover:shadow-[#064699]/30',
+    gradient: 'from-blue-600 via-sky-400 to-cyan-500',
+    iconBg: 'bg-blue-50 border-blue-200/60',
+    iconText: 'text-blue-600',
+    dotColor: 'bg-blue-600',
+    border: 'hover:border-blue-400',
+    shadow: 'hover:shadow-blue-500/10',
   },
   {
     icon: Smartphone,
@@ -22,12 +22,12 @@ const services = [
     description:
       'Native & cross-platform iOS and Android mobile applications built with React Native and Flutter. Designed for high performance, intuitive UX, and seamless app store deployment.',
     features: ['iOS & Android (React Native / Flutter)', 'Smooth 60fps UI & Animations', 'Offline-First & Cloud API Sync', 'App Store & Google Play Deployment'],
-    gradient: 'from-sky-300 via-[#064699] to-cyan-500',
-    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
-    iconText: 'text-sky-300',
-    dotColor: 'bg-sky-400',
+    gradient: 'from-sky-500 via-blue-600 to-cyan-500',
+    iconBg: 'bg-sky-50 border-sky-200/60',
+    iconText: 'text-sky-600',
+    dotColor: 'bg-sky-500',
     border: 'hover:border-sky-400',
-    shadow: 'hover:shadow-sky-950/50',
+    shadow: 'hover:shadow-sky-500/10',
   },
   {
     icon: TrendingUp,
@@ -35,12 +35,12 @@ const services = [
     description:
       'Dominate search engine rankings with our data-driven SEO strategies. We conduct deep technical audits, targeted keyword research, and high-quality link building.',
     features: ['Technical SEO Audits & Fixes', 'Targeted Keyword Strategy', 'Authority Link Building', 'GA4 Analytics & Rank Tracking'],
-    gradient: 'from-cyan-400 via-[#064699] to-[#081e26]',
-    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
-    iconText: 'text-cyan-300',
-    dotColor: 'bg-cyan-400',
-    border: 'hover:border-cyan-500/60',
-    shadow: 'hover:shadow-cyan-950/50',
+    gradient: 'from-cyan-500 via-blue-600 to-sky-400',
+    iconBg: 'bg-cyan-50 border-cyan-200/60',
+    iconText: 'text-cyan-600',
+    dotColor: 'bg-cyan-500',
+    border: 'hover:border-cyan-400',
+    shadow: 'hover:shadow-cyan-500/10',
   },
   {
     icon: Megaphone,
@@ -48,12 +48,12 @@ const services = [
     description:
       'High-ROI campaigns across Google Search, Meta (Instagram & Facebook), and beyond. We combine audience targeting with high-converting creative.',
     features: ['Google Search & Display Ads', 'Meta Paid Social Campaigns', 'Conversion Rate Optimization', 'Retargeting & ROI Analytics'],
-    gradient: 'from-blue-400 via-[#064699] to-[#081e26]',
-    iconBg: 'from-[#064699]/30 to-[#081e26]/30',
-    iconText: 'text-blue-300',
-    dotColor: 'bg-blue-400',
-    border: 'hover:border-blue-500/60',
-    shadow: 'hover:shadow-blue-950/50',
+    gradient: 'from-blue-600 via-sky-500 to-cyan-400',
+    iconBg: 'bg-blue-50 border-blue-200/60',
+    iconText: 'text-blue-600',
+    dotColor: 'bg-blue-600',
+    border: 'hover:border-blue-400',
+    shadow: 'hover:shadow-blue-500/10',
   },
 ];
 
@@ -68,9 +68,9 @@ const cardVariants = {
 
 const Services = () => {
   return (
-    <section id="services" className="py-32 bg-[#081e26] relative">
+    <section id="services" className="py-32 bg-white relative">
       {/* Top divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-[#064699]/60 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-blue-200 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
@@ -90,26 +90,26 @@ const Services = () => {
               whileInView="show"
               viewport={{ once: true, margin: '-60px' }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className={`group relative p-8 rounded-2xl bg-[#061c24]/90 border border-[#064699]/30
+              className={`group relative p-8 rounded-2xl bg-slate-50/80 border border-slate-200/80
                 ${service.border} ${service.shadow}
-                hover:shadow-2xl backdrop-blur-sm transform-gpu
+                hover:shadow-xl backdrop-blur-sm transform-gpu
                 transition-all duration-300 cursor-pointer`}
             >
               {/* Gradient top accent */}
               <div className={`absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full`} />
 
               {/* Icon */}
-              <div className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br ${service.iconBg} border border-[#064699]/40 items-center justify-center mb-6`}>
+              <div className={`inline-flex w-14 h-14 rounded-2xl ${service.iconBg} border items-center justify-center mb-6`}>
                 <service.icon size={26} className={service.iconText} />
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">{service.description}</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-6">{service.description}</p>
 
               {/* Features */}
               <ul className="space-y-2">
                 {service.features.map((feat) => (
-                  <li key={feat} className="flex items-center gap-2 text-slate-300 text-sm">
+                  <li key={feat} className="flex items-center gap-2 text-slate-700 text-sm">
                     <span className={`w-1.5 h-1.5 rounded-full ${service.dotColor}`} />
                     {feat}
                   </li>

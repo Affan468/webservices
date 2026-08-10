@@ -14,11 +14,11 @@ const Button = ({
 
   const variants = {
     primary:
-      'bg-gradient-to-r from-sky-400 via-[#064699] to-blue-600 text-white font-bold border border-sky-300/40 shadow-lg shadow-sky-500/30 hover:shadow-sky-400/50 hover:from-sky-300 hover:to-[#064699] hover:scale-105',
+      'bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 text-white font-bold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105',
     outline:
-      'border border-sky-400/60 text-sky-200 bg-sky-500/15 hover:bg-sky-500/30 hover:border-sky-300 backdrop-blur-sm shadow-sm',
+      'border border-blue-200 text-blue-700 bg-white hover:bg-blue-50/80 hover:border-blue-400 shadow-sm',
     ghost:
-      'text-sky-200 hover:text-white hover:bg-sky-500/20',
+      'text-slate-700 hover:text-blue-600 hover:bg-blue-50',
   };
 
   const sizes = {

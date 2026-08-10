@@ -21,8 +21,8 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-32 bg-[#081e26] relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-[#064699]/60 to-transparent" />
+    <section id="projects" className="py-32 bg-slate-50 relative">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-blue-200 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
@@ -42,8 +42,8 @@ const Projects = () => {
               whileTap={{ scale: 0.95 }}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeFilter === cat
-                  ? 'bg-gradient-to-r from-[#064699] to-[#085ac9] text-white border border-sky-400/40 shadow-lg shadow-[#064699]/40'
-                  : 'bg-[#061c24]/90 border border-[#064699]/30 text-slate-300 hover:text-white hover:border-[#064699] hover:shadow-sm'
+                  ? 'bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 hover:shadow-sm'
               }`}
             >
               {cat}
@@ -65,10 +65,10 @@ const Projects = () => {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.35, ease: 'easeOut' }}
                     whileHover={{ y: -6 }}
-                    className="group relative rounded-2xl overflow-hidden bg-[#061c24]/90 border border-[#064699]/30 hover:border-[#064699] hover:shadow-2xl transition-all duration-300 cursor-pointer backdrop-blur-sm"
+                    className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200/80 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 cursor-pointer backdrop-blur-sm"
                   >
                     {/* Visual Cover Container */}
-                    <div className="relative h-48 bg-[#04141b] flex items-center justify-center p-4 overflow-hidden">
+                    <div className="relative h-48 bg-slate-900 flex items-center justify-center p-4 overflow-hidden">
                       {/* Blurry Photo Background */}
                       {project.image ? (
                         <img
@@ -78,7 +78,7 @@ const Projects = () => {
                           className="absolute inset-0 w-full h-full object-cover scale-125 blur-xl opacity-70 transform-gpu select-none pointer-events-none"
                         />
                       ) : (
-                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient || 'from-[#064699] to-[#081e26]'}`} />
+                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient || 'from-blue-600 to-sky-400'}`} />
                       )}
 
                       {/* Dark overlay for optimal contrast */}
@@ -110,14 +110,14 @@ const Projects = () => {
                           </div>
                         </motion.a>
                       )}
-                      <div className="absolute z-30 top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-semibold border border-white/30 shadow-lg pointer-events-none">
+                      <div className="absolute z-30 top-3 left-3 px-3 py-1 rounded-full bg-slate-900/70 backdrop-blur-md text-white text-xs font-semibold border border-white/20 shadow-lg pointer-events-none">
                         {project.tag || project.category}
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed">{project.description}</p>
+                      <h3 className="text-slate-900 font-bold text-lg mb-2">{project.title}</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">{project.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -148,13 +148,13 @@ const Projects = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16 px-6 rounded-2xl bg-[#061c24]/60 border border-[#064699]/30 max-w-xl mx-auto backdrop-blur-sm"
+            className="text-center py-16 px-6 rounded-2xl bg-white border border-slate-200 max-w-xl mx-auto backdrop-blur-sm"
           >
-            <div className="w-16 h-16 rounded-2xl bg-[#064699]/20 border border-[#064699]/40 flex items-center justify-center mx-auto mb-4 text-sky-400">
+            <div className="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-4 text-blue-600">
               <Sparkles size={32} />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Custom Projects Ready to Add</h3>
-            <p className="text-slate-400 text-sm">
+            <h3 className="text-xl font-bold text-slate-900 mb-2">Custom Projects Ready to Add</h3>
+            <p className="text-slate-600 text-sm">
               Provide your project details and we will showcase your custom work here!
             </p>
           </motion.div>

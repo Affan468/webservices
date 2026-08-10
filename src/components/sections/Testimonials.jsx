@@ -5,20 +5,20 @@ import SectionHeading from '../ui/SectionHeading';
 
 const testimonials = [
   {
-    name: 'Sarah Mitchell', role: 'CEO, FinTrack', avatar: 'SM', color: 'bg-violet-500', rating: 5,
-    text: "DevSynx completely transformed our online presence. Within 3 months of launching our new site, we saw a 340% increase in qualified leads. Their team is exceptional — responsive, talented, and truly invested in your success.",
+    name: 'Sarah Mitchell', role: 'CEO, FinTrack', avatar: 'SM', color: 'bg-blue-600', rating: 5,
+    text: "DeviAura completely transformed our online presence. Within 3 months of launching our new site, we saw a 340% increase in qualified leads. Their team is exceptional — responsive, talented, and truly invested in your success.",
   },
   {
-    name: 'James Rodriguez', role: 'Marketing Director, NaturaBrand', avatar: 'JR', color: 'bg-cyan-500', rating: 5,
-    text: "The SEO results were beyond what we imagined. From near-zero organic traffic to 50,000 monthly visitors in just 6 months. DevSynx's strategy was precise and their execution was flawless. Highly recommend!",
+    name: 'James Rodriguez', role: 'Marketing Director, NaturaBrand', avatar: 'JR', color: 'bg-sky-500', rating: 5,
+    text: "The SEO results were beyond what we imagined. From near-zero organic traffic to 50,000 monthly visitors in just 6 months. DeviAura's strategy was precise and their execution was flawless. Highly recommend!",
   },
   {
-    name: 'Priya Sharma', role: 'Founder, LuxeStore', avatar: 'PS', color: 'bg-pink-500', rating: 5,
-    text: "Our Shopify store by DevSynx is absolutely stunning. The design, speed, and UX are world-class. We hit $2M in revenue in our first year — I credit a huge part of that to the exceptional digital experience they built.",
+    name: 'Priya Sharma', role: 'Founder, LuxeStore', avatar: 'PS', color: 'bg-cyan-500', rating: 5,
+    text: "Our store by DeviAura is absolutely stunning. The design, speed, and UX are world-class. We hit $2M in revenue in our first year — I credit a huge part of that to the exceptional digital experience they built.",
   },
   {
-    name: 'David Chen', role: 'Growth Lead, TechFlow', avatar: 'DC', color: 'bg-amber-500', rating: 5,
-    text: "The PPC campaigns DevSynx ran for us achieved a 400% ROAS — something we thought was impossible in our competitive space. They actually understand B2B marketing and deliver enterprise-level results.",
+    name: 'David Chen', role: 'Growth Lead, TechFlow', avatar: 'DC', color: 'bg-blue-500', rating: 5,
+    text: "The PPC campaigns DeviAura ran for us achieved a 400% ROAS — something we thought was impossible in our competitive space. They actually understand B2B marketing and deliver enterprise-level results.",
   },
 ];
 
@@ -31,15 +31,15 @@ const Testimonials = () => {
   const t = testimonials[current];
 
   return (
-    <section id="testimonials" className="py-32 bg-white relative overflow-hidden">
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-violet-50 blur-3xl pointer-events-none" />
+    <section id="testimonials" className="py-32 bg-slate-50 relative overflow-hidden">
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-blue-100/50 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           badge="Client Love"
           title="Words From Our"
           highlight="Happy Clients"
-          subtitle="Don't just take our word for it — here's what our clients say about working with DevSynx."
+          subtitle="Don't just take our word for it — here's what our clients say about working with DeviAura."
         />
 
         <div className="max-w-3xl mx-auto">
@@ -52,18 +52,18 @@ const Testimonials = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -30, scale: 0.96 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="p-10 rounded-3xl bg-white border border-gray-200 shadow-xl shadow-gray-100 relative"
+                className="p-10 rounded-3xl bg-white border border-slate-200 shadow-xl shadow-blue-500/5 relative"
               >
-                <Quote size={48} className="absolute top-8 right-8 text-violet-100" />
+                <Quote size={48} className="absolute top-8 right-8 text-blue-100" />
 
                 {/* Stars */}
                 <div className="flex gap-1 mb-6">
                   {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
+                    <Star key={i} size={18} className="fill-amber-400 text-amber-400" />
                   ))}
                 </div>
 
-                <p className="text-gray-600 text-lg leading-relaxed mb-8 italic">
+                <p className="text-slate-700 text-lg leading-relaxed mb-8 italic">
                   "{t.text}"
                 </p>
 
@@ -72,8 +72,8 @@ const Testimonials = () => {
                     {t.avatar}
                   </div>
                   <div>
-                    <p className="text-gray-900 font-semibold">{t.name}</p>
-                    <p className="text-gray-400 text-sm">{t.role}</p>
+                    <p className="text-slate-900 font-bold">{t.name}</p>
+                    <p className="text-slate-500 text-sm">{t.role}</p>
                   </div>
                 </div>
               </motion.div>
@@ -90,7 +90,7 @@ const Testimonials = () => {
                   onClick={() => setCurrent(i)}
                   animate={{ width: i === current ? 24 : 8, opacity: i === current ? 1 : 0.3 }}
                   transition={{ duration: 0.3 }}
-                  className="h-2 rounded-full bg-violet-500"
+                  className="h-2 rounded-full bg-blue-600"
                 />
               ))}
             </div>

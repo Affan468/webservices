@@ -46,7 +46,7 @@ const AnimatedWord = ({ word, isActive }) => (
     initial={{ opacity: 0, y: 30, rotateX: -30 }}
     animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : -30, rotateX: isActive ? 0 : 30 }}
     transition={{ duration: 0.45, ease: 'easeOut' }}
-    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-sky-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent px-6 overflow-visible text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-normal"
+    className="absolute inset-0 flex items-center justify-center text-center whitespace-nowrap bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-500 bg-clip-text text-transparent px-6 overflow-visible text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-normal"
     style={{ pointerEvents: isActive ? 'auto' : 'none' }}
   >
     {word}
@@ -88,43 +88,43 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden bg-[#081e26]"
+      className="relative pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden bg-slate-50"
     >
       {/* Subtle dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, #064699 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, #0284c7 1px, transparent 1px)',
           backgroundSize: '32px 32px',
-          opacity: 0.25,
+          opacity: 0.12,
         }}
       />
 
-      {/* Deep Light-Blue to Midnight Gradient wash */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-950/60 via-[#064699]/20 to-[#081e26] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#081e26] to-transparent pointer-events-none" />
+      {/* Light-Blue Gradient wash */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-100/60 via-sky-50/40 to-slate-50 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 to-transparent pointer-events-none" />
 
       {/* Background Orbs */}
       <FloatingOrb
-        color="radial-gradient(circle, #38bdf8 0%, #064699 60%, transparent 80%)"
+        color="radial-gradient(circle, #38bdf8 0%, #0284c7 60%, transparent 80%)"
         size="540px"
         depth={0.8}
-        style={{ top: '-10%', left: '-5%' }}
+        style={{ top: '-10%', left: '-5%', opacity: 0.15 }}
       />
       <FloatingOrb
-        color="radial-gradient(circle, #0ea5e9 0%, #081e26 70%, transparent 80%)"
+        color="radial-gradient(circle, #0ea5e9 0%, #38bdf8 70%, transparent 80%)"
         size="500px"
         depth={1.2}
-        style={{ bottom: '-10%', right: '-4%' }}
+        style={{ bottom: '-10%', right: '-4%', opacity: 0.15 }}
       />
 
-      {/* ── LEFT SIDE FLANK: WEB DEVELOPMENT VISUAL & REVOLVING SETTINGS ICON ── */}
+      {/* ── LEFT SIDE FLANK ── */}
       <div className="absolute left-4 lg:left-10 xl:left-14 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-8 pointer-events-none z-10">
         {/* Revolving Settings Icon */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="w-14 h-14 rounded-2xl bg-[#064699]/20 backdrop-blur-sm border border-[#064699]/40 flex items-center justify-center text-sky-400 shadow-sm"
+          className="w-14 h-14 rounded-2xl bg-white shadow-xl shadow-blue-500/10 border border-blue-100 flex items-center justify-center text-blue-600"
         >
           <Settings size={26} />
         </motion.div>
@@ -132,25 +132,25 @@ const Hero = () => {
         {/* Frameless Web Dev Image floating in background */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 0.85, x: 0, y: [0, -12, 0] }}
+          animate={{ opacity: 0.95, x: 0, y: [0, -12, 0] }}
           transition={{ y: { duration: 5, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8 } }}
-          className="relative max-w-[250px] xl:max-w-[280px] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(6,70,153,0.3)] border border-[#064699]/30 hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
+          className="relative max-w-[250px] xl:max-w-[280px] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(2,132,199,0.15)] border border-blue-200/80 hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
         >
           <img
             src={webDevImg}
             alt="Web Development"
-            className="w-full h-auto object-cover rounded-3xl opacity-85 hover:scale-105 transition-transform duration-500"
+            className="w-full h-auto object-cover rounded-3xl hover:scale-105 transition-transform duration-500"
           />
         </motion.div>
       </div>
 
-      {/* ── RIGHT SIDE FLANK: SEO & DIGITAL MARKETING FRAMELESS GRAPHICS ── */}
+      {/* ── RIGHT SIDE FLANK ── */}
       <div className="absolute right-4 lg:right-10 xl:right-14 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-end gap-10 pointer-events-none z-10">
         {/* Revolving Target Radar Icon */}
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-          className="w-14 h-14 rounded-2xl bg-[#064699]/20 backdrop-blur-sm border border-[#064699]/40 flex items-center justify-center text-sky-400 shadow-sm"
+          className="w-14 h-14 rounded-2xl bg-white shadow-xl shadow-blue-500/10 border border-blue-100 flex items-center justify-center text-blue-600"
         >
           <Target size={26} />
         </motion.div>
@@ -158,9 +158,9 @@ const Hero = () => {
         {/* Frameless Floating SEO Graphic */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 0.9, x: 0, y: [0, 12, 0] }}
+          animate={{ opacity: 0.95, x: 0, y: [0, 12, 0] }}
           transition={{ y: { duration: 5.5, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8 } }}
-          className="relative max-w-[220px] xl:max-w-[250px] pointer-events-auto filter drop-shadow-[0_20px_35px_rgba(16,185,129,0.35)] hover:opacity-100 transition-all duration-300 hover:scale-105"
+          className="relative max-w-[220px] xl:max-w-[250px] pointer-events-auto filter drop-shadow-[0_15px_30px_rgba(2,132,199,0.2)] hover:opacity-100 transition-all duration-300 hover:scale-105"
         >
           <img
             src={seoImg}
@@ -172,9 +172,9 @@ const Hero = () => {
         {/* Frameless Floating Digital Marketing Graphic */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 0.9, x: 0, y: [0, -10, 0] }}
+          animate={{ opacity: 0.95, x: 0, y: [0, -10, 0] }}
           transition={{ y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.8, delay: 0.2 } }}
-          className="relative max-w-[220px] xl:max-w-[250px] pointer-events-auto filter drop-shadow-[0_20px_35px_rgba(244,63,94,0.35)] hover:opacity-100 transition-all duration-300 hover:scale-105"
+          className="relative max-w-[220px] xl:max-w-[250px] pointer-events-auto filter drop-shadow-[0_15px_30px_rgba(2,132,199,0.2)] hover:opacity-100 transition-all duration-300 hover:scale-105"
         >
           <img
             src={digitalImg}
@@ -194,8 +194,8 @@ const Hero = () => {
       >
         {/* Badge */}
         <motion.div variants={fadeUp} className="mb-4">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#064699]/20 border border-[#064699]/40 text-sky-300 text-xs sm:text-sm font-semibold shadow-sm backdrop-blur-md">
-            <Sparkles size={13} className="text-sky-400" />
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100/90 border border-sky-200 text-blue-700 text-xs sm:text-sm font-semibold shadow-sm backdrop-blur-md">
+            <Sparkles size={13} className="text-blue-600" />
             Fueling Digital Success
           </span>
         </motion.div>
@@ -203,7 +203,7 @@ const Hero = () => {
         {/* Headline */}
         <motion.h1
           variants={fadeUp}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-4"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-4"
         >
           We Do
           <br />
@@ -219,7 +219,7 @@ const Hero = () => {
         {/* Subheadline */}
         <motion.p
           variants={fadeUp}
-          className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8"
+          className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8"
         >
           High-performance web development, data-driven SEO optimization, and ROI-focused digital marketing campaigns engineered for growth.
         </motion.p>
@@ -239,11 +239,11 @@ const Hero = () => {
         {/* Rating */}
         <motion.div variants={fadeUp} className="flex items-center justify-center">
           <div className="flex flex-col items-center text-center">
-            <div className="flex text-yellow-400 mb-1 gap-0.5">
+            <div className="flex text-amber-400 mb-1 gap-0.5">
               {[...Array(5)].map((_, i) => <Star key={i} size={15} className="fill-current" />)}
             </div>
-            <p className="text-sm text-slate-400">
-              <strong className="text-white">4.9/5</strong> rating from 120+ satisfied clients
+            <p className="text-sm text-slate-600">
+              <strong className="text-slate-900">4.9/5</strong> rating from 120+ satisfied clients
             </p>
           </div>
         </motion.div>

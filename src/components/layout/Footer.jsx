@@ -49,27 +49,26 @@ const footerLinks = {
 
 const Footer = ({ onOpenAdmin }) => {
   return (
-    <footer className="bg-[#04141b] border-t border-[#064699]/30 pt-20 pb-10">
+    <footer className="bg-slate-100/90 border-t border-slate-200 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white p-1 overflow-hidden flex items-center justify-center shrink-0 shadow-md">
+              <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white p-1 overflow-hidden flex items-center justify-center shrink-0 shadow-md border border-slate-200">
                 <img src={logoImg} alt="DEVIAURA Logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-extrabold text-xl tracking-tight">
-                <span className="text-white">DEVI</span>
+                <span className="text-slate-900">DEVI</span>
                 <span
-                  className="bg-gradient-to-t from-[#1d4ed8] via-[#38bdf8] to-[#87CEEB] bg-clip-text text-transparent"
-                  style={{ WebkitTextStroke: '0.4px rgba(255, 255, 255, 0.45)' }}
+                  className="bg-gradient-to-r from-[#1d4ed8] via-[#38bdf8] to-[#0284c7] bg-clip-text text-transparent"
                 >
                   ΛURΛ
                 </span>
               </span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
-              <strong className="text-sky-300 block mb-1">Fueling Digital Success</strong>
+            <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-xs">
+              <strong className="text-blue-600 block mb-1">Fueling Digital Success</strong>
               We craft cutting-edge digital experiences — from web & mobile app development to data-driven marketing.
             </p>
 
@@ -77,20 +76,20 @@ const Footer = ({ onOpenAdmin }) => {
             <div className="space-y-3 mb-6">
               <a
                 href="mailto:thedeviaura@gmail.com"
-                className="flex items-center gap-2.5 text-slate-400 text-sm hover:text-sky-300 transition-colors group"
+                className="flex items-center gap-2.5 text-slate-600 text-sm hover:text-blue-600 transition-colors group"
               >
-                <div className="w-7 h-7 rounded-lg bg-[#064699]/20 border border-[#064699]/40 flex items-center justify-center shrink-0 group-hover:border-sky-400 transition-colors">
-                  <Mail size={13} className="text-sky-400" />
+                <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-blue-400 shadow-sm transition-colors">
+                  <Mail size={13} className="text-blue-600" />
                 </div>
                 <span>thedeviaura@gmail.com</span>
               </a>
 
               <a
                 href="tel:+923306386366"
-                className="flex items-center gap-2.5 text-slate-400 text-sm hover:text-sky-300 transition-colors group"
+                className="flex items-center gap-2.5 text-slate-600 text-sm hover:text-blue-600 transition-colors group"
               >
-                <div className="w-7 h-7 rounded-lg bg-[#064699]/20 border border-[#064699]/40 flex items-center justify-center shrink-0 group-hover:border-sky-400 transition-colors">
-                  <Phone size={13} className="text-sky-400" />
+                <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-blue-400 shadow-sm transition-colors">
+                  <Phone size={13} className="text-blue-600" />
                 </div>
                 <span>+92 330 6386366</span>
               </a>
@@ -99,10 +98,10 @@ const Footer = ({ onOpenAdmin }) => {
             {/* Social Media Icons */}
             <div className="flex items-center gap-3">
               {[
-                { icon: WhatsAppIcon, href: 'https://wa.me/923306386366', label: 'WhatsApp', color: 'hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-emerald-500/10' },
-                { icon: InstagramIcon, href: 'https://www.instagram.com/the.deviaura', label: 'Instagram', color: 'hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10' },
-                { icon: FacebookIcon, href: 'https://www.facebook.com/share/1CrMk5xHpj/', label: 'Facebook', color: 'hover:text-blue-400 hover:border-blue-500/50 hover:bg-blue-500/10' },
-                { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/deviaura', label: 'LinkedIn', color: 'hover:text-sky-400 hover:border-sky-500/50 hover:bg-sky-500/10' },
+                { icon: WhatsAppIcon, href: 'https://wa.me/923306386366', label: 'WhatsApp', color: 'hover:text-emerald-600 hover:border-emerald-300 hover:bg-emerald-50' },
+                { icon: InstagramIcon, href: 'https://www.instagram.com/the.deviaura', label: 'Instagram', color: 'hover:text-pink-600 hover:border-pink-300 hover:bg-pink-50' },
+                { icon: FacebookIcon, href: 'https://www.facebook.com/share/1CrMk5xHpj/', label: 'Facebook', color: 'hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50' },
+                { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/deviaura', label: 'LinkedIn', color: 'hover:text-sky-600 hover:border-sky-300 hover:bg-sky-50' },
               ].map(({ icon: Icon, href, label, color }) => (
                 <a
                   key={label}
@@ -110,7 +109,7 @@ const Footer = ({ onOpenAdmin }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`w-9 h-9 rounded-xl bg-[#061c24] border border-[#064699]/40 flex items-center justify-center text-slate-400 transition-all duration-300 hover:scale-110 shadow-sm ${color}`}
+                  className={`w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 transition-all duration-300 hover:scale-110 shadow-sm ${color}`}
                 >
                   <Icon size={16} />
                 </a>
@@ -121,11 +120,11 @@ const Footer = ({ onOpenAdmin }) => {
           {/* Links */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="text-slate-200 font-semibold mb-5 text-sm tracking-wide uppercase">{title}</h4>
+              <h4 className="text-slate-900 font-bold mb-5 text-sm tracking-wide uppercase">{title}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-slate-400 text-sm hover:text-sky-300 transition-colors duration-200">
+                    <a href={link.href} className="text-slate-600 text-sm hover:text-blue-600 transition-colors duration-200">
                       {link.label}
                     </a>
                   </li>
@@ -136,11 +135,11 @@ const Footer = ({ onOpenAdmin }) => {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-[#064699]/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">© {new Date().getFullYear()} DeviAura. All rights reserved.</p>
           <button
             onClick={onOpenAdmin}
-            className="text-slate-500 hover:text-sky-300 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+            className="text-slate-500 hover:text-blue-600 text-xs font-semibold flex items-center gap-1.5 transition-colors"
           >
             Admin Panel Login
           </button>
