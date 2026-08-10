@@ -238,12 +238,12 @@ const Hero = () => {
 
         {/* Rating */}
         <motion.div variants={fadeUp} className="flex items-center justify-center">
-          <div className="flex flex-col items-center text-center">
-            <div className="flex text-amber-300 mb-1 gap-0.5">
-              {[...Array(5)].map((_, i) => <Star key={i} size={15} className="fill-current" />)}
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-900/60 backdrop-blur-md border border-white/20 shadow-xl">
+            <div className="flex text-amber-400 gap-0.5">
+              {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-current" />)}
             </div>
-            <p className="text-sm text-sky-100">
-              <strong className="text-white font-bold">4.9/5</strong> rating from 120+ satisfied clients
+            <p className="text-xs sm:text-sm text-slate-200">
+              <strong className="text-white font-extrabold">4.9/5</strong> rating from <span className="text-sky-300 font-semibold">120+ satisfied clients</span>
             </p>
           </div>
         </motion.div>
